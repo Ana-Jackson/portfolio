@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Needs Assessment: LMNOP Aviation | Ana Jackson</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #FAF7F2;
+  --cream-dark: #F0E6D9;
+  --camel-dark: #4A3A22;
+  --camel-mid: #6B5638;
+  --camel-light: #8A7556;
+  --camel-shoe: #C6A882;
+  --red: #E03C31;
+  --red-dark: #B82E25;
+  --black: #1C1C1C;
+  --white: #FFFFFF;
+  --font-display: 'Libre Baskerville', Georgia, serif;
+  --font-body: 'Source Sans 3', 'Segoe UI', sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: var(--font-body);
+  color: var(--camel-mid);
+  background: var(--cream);
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+nav {
+  background: var(--cream);
+  border-bottom: 1px solid rgba(74, 58, 34, 0.08);
+}
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 40px;
+}
+.nav-name {
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--camel-dark);
+  text-decoration: none;
+}
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--camel-light);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--red); }
+.hero-img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+.content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 60px 40px 100px;
+}
+.back-link {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--red);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 32px;
+  transition: gap 0.2s;
+}
+.back-link:hover { gap: 10px; }
+.project-title {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--camel-dark);
+  line-height: 1.35;
+  margin-bottom: 24px;
+}
+.coming-soon {
+  padding: 40px;
+  background: var(--white);
+  border-radius: 8px;
+  border: 1px solid rgba(74, 58, 34, 0.08);
+  text-align: center;
+  color: var(--camel-light);
+  font-size: 17px;
+}
+.coming-soon p { margin-top: 8px; font-size: 15px; }
+footer {
+  background: var(--black);
+  padding: 24px 40px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--camel-light);
+}
+@media (max-width: 768px) {
+  .nav-inner { padding: 14px 24px; }
+  .nav-links { gap: 20px; }
+  .nav-links a { font-size: 12px; }
+  .content { padding: 40px 24px 80px; }
+  .project-title { font-size: 26px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-name">Ana Jackson</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#portfolio">Portfolio</a></li>
+      <li><a href="index.html#experience">Experience</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+<img src="lmnop-aviation.jpeg" alt="Needs Assessment: LMNOP Aviation" class="hero-img">
+<div class="content">
+  <a href="index.html#portfolio" class="back-link">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+    Back to portfolio
+  </a>
+  <h1 class="project-title">Needs Assessment: LMNOP Aviation</h1>
+  <div class="coming-soon">
+    Full project details coming soon.
+    <p>In the meantime, feel free to <a href="index.html#contact" style="color: var(--red);">reach out</a> to discuss this project.</p>
+  </div>
+</div>
+<footer>&copy; 2026 Ana Jackson. Built with care.</footer>
+</body>
+</html>
