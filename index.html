@@ -277,7 +277,7 @@ section {
 .portfolio-featured {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 28px;
   margin-top: 0;
 }
 .portfolio-featured .card-img {
@@ -289,13 +289,11 @@ section {
 .portfolio-featured .card-content {
   padding: 28px 32px 32px;
 }
-.portfolio-featured-wrap {
-  background: var(--red);
-  border-radius: 12px;
-  padding: 16px;
-}
 .portfolio-featured .portfolio-card {
-  border: none;
+  border: 7px solid var(--red);
+}
+.portfolio-featured .portfolio-card:hover {
+  border-color: var(--red-dark);
 }
 .portfolio-featured-label {
   font-size: 13px;
@@ -656,7 +654,6 @@ footer {
     </div>
 
     <div class="portfolio-featured-label">Featured Projects</div>
-    <div class="portfolio-featured-wrap">
     <div class="portfolio-featured">
       <a class="portfolio-card" href="lmnop-aviation.html">
         <div class="card-img"><img src="lmnop-aviation.jpeg" alt="LMNOP Aviation" style="width:100%;height:100%;object-fit:cover;"></div>
@@ -672,7 +669,6 @@ footer {
           <div class="card-desc">Every time Hale Associates started a new engagement, a consultant had to facilitate the data-gathering process personally. It worked, but it was expensive and it didn't scale. We asked: what if we taught clients to do this themselves? The result was an instructional design that transferred a core consulting skill to the client, freeing up capacity for higher-value work.</div>
         </div>
       </a>
-    </div>
     </div>
 
     <div class="portfolio-secondary-label">More work</div>
