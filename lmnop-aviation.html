@@ -3,123 +3,169 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Needs Assessment: LMNOP Aviation | Ana Jackson</title>
+<title>Is it a training problem or something else? | Ana Jackson</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --cream: #FAF7F2;
-  --cream-dark: #F0E6D9;
-  --camel-dark: #4A3A22;
-  --camel-mid: #6B5638;
-  --camel-light: #8A7556;
-  --camel-shoe: #C6A882;
-  --red: #E03C31;
-  --red-dark: #B82E25;
-  --black: #1C1C1C;
-  --white: #FFFFFF;
+  --cream: #FAF7F2; --cream-dark: #F0E6D9; --cream-mid: #E8DDD0;
+  --camel-dark: #4A3A22; --camel-mid: #6B5638; --camel-light: #8A7556; --camel-shoe: #C6A882;
+  --red: #E03C31; --red-dark: #B82E25; --red-light: #F5E0DE;
+  --black: #1C1C1C; --white: #FFFFFF;
   --font-display: 'Libre Baskerville', Georgia, serif;
   --font-body: 'Source Sans 3', 'Segoe UI', sans-serif;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-  font-family: var(--font-body);
-  color: var(--camel-mid);
-  background: var(--cream);
-  font-size: 17px;
-  line-height: 1.7;
-  -webkit-font-smoothing: antialiased;
-}
-nav {
-  background: var(--cream);
-  border-bottom: 1px solid rgba(74, 58, 34, 0.08);
-}
-.nav-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px 40px;
-}
-.nav-name {
-  font-family: var(--font-display);
-  font-size: 18px;
-  color: var(--camel-dark);
-  text-decoration: none;
-}
+body { font-family: var(--font-body); color: var(--camel-mid); background: var(--cream); font-size: 17px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+nav { position: fixed; top: 0; width: 100%; z-index: 100; background: var(--cream); border-bottom: 1px solid rgba(74,58,34,0.08); transition: box-shadow 0.3s; }
+nav.scrolled { box-shadow: 0 1px 12px rgba(74,58,34,0.06); }
+.scroll-progress { position: absolute; bottom: 0; left: 0; height: 3px; width: 0%; background: var(--red); z-index: 101; }
+.nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 18px 40px; }
+.nav-name { font-family: var(--font-display); font-size: 18px; color: var(--camel-dark); text-decoration: none; }
 .nav-links { display: flex; gap: 32px; list-style: none; }
-.nav-links a {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--camel-light);
-  text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  transition: color 0.2s;
-}
+.nav-links a { font-size: 14px; font-weight: 500; color: var(--camel-light); text-decoration: none; text-transform: uppercase; letter-spacing: 0.08em; transition: color 0.2s; }
 .nav-links a:hover { color: var(--red); }
-.hero-img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-}
-.content {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 60px 40px 100px;
-}
-.back-link {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--red);
-  text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 32px;
-  transition: gap 0.2s;
-}
-.back-link:hover { gap: 10px; }
-.project-title {
-  font-family: var(--font-display);
-  font-size: 32px;
-  font-weight: 400;
-  color: var(--camel-dark);
-  line-height: 1.35;
-  margin-bottom: 24px;
-}
-.coming-soon {
-  padding: 40px;
-  background: var(--white);
-  border-radius: 8px;
-  border: 1px solid rgba(74, 58, 34, 0.08);
-  text-align: center;
-  color: var(--camel-light);
-  font-size: 17px;
-}
-.coming-soon p { margin-top: 8px; font-size: 15px; }
-footer {
-  background: var(--black);
-  padding: 24px 40px;
-  text-align: center;
-  font-size: 13px;
-  color: var(--camel-light);
-}
-@media (max-width: 768px) {
-  .nav-inner { padding: 14px 24px; }
-  .nav-links { gap: 20px; }
-  .nav-links a { font-size: 12px; }
-  .content { padding: 40px 24px 80px; }
-  .project-title { font-size: 26px; }
+
+/* HERO */
+.case-hero { margin-top: 60px; background: var(--black); padding: 80px 40px 60px; }
+.case-hero-inner { max-width: 1100px; margin: 0 auto; }
+.case-hero .back-link { font-size: 14px; font-weight: 500; color: var(--camel-shoe); text-decoration: none; text-transform: uppercase; letter-spacing: 0.06em; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 32px; transition: gap 0.2s; }
+.case-hero .back-link:hover { gap: 10px; color: var(--cream); }
+.case-hero-label { font-size: 13px; font-weight: 500; color: var(--red); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; }
+.case-hero h1 { font-family: var(--font-display); font-size: 40px; font-weight: 400; color: var(--cream); line-height: 1.3; max-width: 800px; margin-bottom: 20px; }
+.case-hero-sub { font-size: 19px; color: var(--camel-shoe); max-width: 640px; line-height: 1.6; margin-bottom: 40px; }
+.stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(198,168,130,0.15); border-radius: 8px; overflow: hidden; margin-top: 20px; }
+.stat-item { background: var(--black); padding: 24px 28px; }
+.stat-label { font-size: 11px; font-weight: 500; color: var(--camel-light); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+.stat-value { font-family: var(--font-display); font-size: 16px; color: var(--cream); font-weight: 400; }
+
+/* LAYOUT */
+.case-layout { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 200px 1fr; gap: 60px; padding: 60px 40px 100px; }
+.side-nav { position: sticky; top: 100px; align-self: start; }
+.side-nav a { display: block; padding: 8px 0; font-size: 13px; font-weight: 500; color: var(--camel-light); text-decoration: none; text-transform: uppercase; letter-spacing: 0.04em; border-left: 2px solid transparent; padding-left: 16px; transition: all 0.2s; }
+.side-nav a:hover, .side-nav a.active { color: var(--red); border-left-color: var(--red); }
+.case-content { max-width: 720px; }
+.case-section { margin-bottom: 64px; }
+.case-section-label { font-size: 15px; font-weight: 500; color: var(--red); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+.case-section h2 { font-family: var(--font-display); font-size: 28px; font-weight: 400; color: var(--camel-dark); line-height: 1.35; margin-bottom: 24px; }
+.case-section p { margin-bottom: 16px; }
+
+/* METRICS */
+.metric-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 32px 0; }
+.metric-card { background: var(--white); border-radius: 8px; padding: 28px; text-align: center; border: 1px solid rgba(74,58,34,0.06); }
+.metric-number { font-family: var(--font-display); font-size: 36px; color: var(--red); font-weight: 700; margin-bottom: 4px; }
+.metric-desc { font-size: 14px; color: var(--camel-mid); }
+
+/* ASSUMPTION VS REALITY */
+.assumption-block { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin: 32px 0; border-radius: 8px; overflow: hidden; }
+.assumption-side { padding: 32px; background: var(--cream-dark); }
+.reality-side { padding: 32px; background: var(--black); }
+.assumption-side .label, .reality-side .label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
+.assumption-side .label { color: var(--camel-light); }
+.reality-side .label { color: var(--red); }
+.assumption-side p { color: var(--camel-dark); font-size: 16px; line-height: 1.6; margin: 0; }
+.reality-side p { color: var(--cream); font-size: 16px; line-height: 1.6; margin: 0; }
+
+/* FRAMEWORK CARDS */
+.framework-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+.framework-card { background: var(--white); border-radius: 8px; padding: 24px; border: 1px solid rgba(74,58,34,0.06); border-top: 3px solid var(--red); }
+.framework-card h4 { font-size: 15px; font-weight: 600; color: var(--camel-dark); margin-bottom: 8px; }
+.framework-card p { font-size: 14px; color: var(--camel-mid); line-height: 1.6; margin: 0; }
+
+/* DATA COLLECTION */
+.data-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin: 24px 0; }
+.data-card { background: var(--white); border-radius: 8px; padding: 20px; text-align: center; border: 1px solid rgba(74,58,34,0.06); }
+.data-icon { font-size: 28px; margin-bottom: 8px; }
+.data-card h4 { font-size: 15px; font-weight: 600; color: var(--camel-dark); margin-bottom: 4px; }
+.data-card p { font-size: 13px; color: var(--camel-mid); line-height: 1.5; margin: 0; }
+
+/* BEM INTERACTIVE GRID */
+.bem-section { margin: 48px 0; }
+.bem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: rgba(74,58,34,0.1); border-radius: 8px; overflow: hidden; margin-top: 20px; }
+.bem-header { padding: 16px 20px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+.bem-header.env { background: var(--red); color: var(--white); }
+.bem-header.ind { background: var(--camel-dark); color: var(--cream); }
+.bem-cell { background: var(--white); padding: 20px; cursor: pointer; transition: all 0.3s; position: relative; min-height: 100px; }
+.bem-cell:hover { background: var(--cream); }
+.bem-cell.expanded { background: var(--cream); }
+.bem-cell-title { font-size: 15px; font-weight: 600; color: var(--camel-dark); margin-bottom: 4px; display: flex; justify-content: space-between; align-items: center; }
+.bem-cell-title .toggle { font-size: 18px; color: var(--red); transition: transform 0.3s; }
+.bem-cell.expanded .toggle { transform: rotate(45deg); }
+.bem-cell-preview { font-size: 13px; color: var(--camel-light); }
+.bem-cell-detail { display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(74,58,34,0.1); font-size: 14px; color: var(--camel-mid); line-height: 1.6; }
+.bem-cell.expanded .bem-cell-detail { display: block; }
+.bem-finding { padding: 6px 0; padding-left: 14px; position: relative; }
+.bem-finding::before { content: ''; width: 5px; height: 5px; background: var(--red); border-radius: 50%; position: absolute; left: 0; top: 13px; }
+.bem-verdict { margin-top: 16px; padding: 12px 16px; border-radius: 6px; font-size: 13px; font-weight: 500; }
+.bem-verdict.high { background: var(--red-light); color: var(--red-dark); }
+.bem-verdict.low { background: #E8F5E9; color: #2E7D32; }
+.bem-verdict.med { background: #FFF8E1; color: #F57F17; }
+
+/* KEY FINDING */
+.key-finding { background: var(--black); padding: 48px; margin: 40px 0; border-radius: 8px; text-align: center; }
+.key-finding .case-section-label { color: var(--camel-shoe); margin-bottom: 16px; }
+.key-finding-text { font-family: var(--font-display); font-size: 22px; font-weight: 400; color: var(--cream); line-height: 1.5; max-width: 580px; margin: 0 auto; }
+
+/* CAUSE THEMES */
+.cause-theme { padding: 24px; background: var(--white); border-radius: 8px; margin-bottom: 12px; border: 1px solid rgba(74,58,34,0.06); border-left: 3px solid var(--red); }
+.cause-theme h4 { font-size: 16px; font-weight: 600; color: var(--camel-dark); margin-bottom: 6px; }
+.cause-theme p { font-size: 15px; color: var(--camel-mid); line-height: 1.6; margin: 0; }
+.cause-theme .scope { display: inline-block; font-size: 11px; font-weight: 600; color: var(--red); text-transform: uppercase; letter-spacing: 0.06em; background: var(--red-light); padding: 2px 10px; border-radius: 12px; margin-bottom: 8px; }
+
+/* RECOMMENDATIONS */
+.rec-tier { margin-bottom: 32px; }
+.rec-tier-label { font-size: 12px; font-weight: 600; color: var(--red); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 16px; }
+.rec-card { padding: 24px 28px; background: var(--white); border-radius: 8px; margin-bottom: 12px; border: 1px solid var(--red); }
+
+.rec-card h4 { font-size: 16px; font-weight: 600; color: var(--camel-dark); margin-bottom: 8px; }
+.rec-card p { font-size: 15px; color: var(--camel-mid); line-height: 1.6; margin: 0; }
+
+/* TIMELINE */
+.timeline-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin: 32px 0; border-radius: 8px; overflow: hidden; }
+.timeline-phase { padding: 20px; background: var(--white); border-top: 3px solid var(--camel-shoe); cursor: pointer; transition: all 0.3s; }
+.timeline-phase h5, .timeline-phase p { opacity: 0.45; transition: opacity 0.3s; }
+.timeline-phase:hover { border-top-color: var(--red); }
+.timeline-phase:hover h5, .timeline-phase:hover p { opacity: 1; }
+.timeline-phase.active { border-top-color: var(--red); }
+.timeline-phase.active h5, .timeline-phase.active p { opacity: 1; }
+.timeline-phase h5 { font-size: 12px; font-weight: 600; color: var(--camel-dark); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px; }
+.timeline-phase p { font-size: 13px; color: var(--camel-mid); line-height: 1.5; margin: 0; }
+
+/* CONSTRAINTS */
+.constraints-box { background: var(--white); border: 1px solid rgba(74,58,34,0.08); border-radius: 8px; padding: 24px 28px; margin: 24px 0; }
+.constraints-box h4 { font-size: 14px; font-weight: 600; color: var(--camel-dark); margin-bottom: 8px; }
+.constraints-box p { font-size: 14px; color: var(--camel-mid); line-height: 1.6; margin: 0; }
+
+/* REFLECTION */
+.reflection { background: var(--cream-dark); padding: 36px; border-radius: 8px; margin-top: 48px; }
+.reflection h2 { font-family: var(--font-display); font-size: 20px; font-weight: 400; color: var(--camel-dark); margin-bottom: 16px; }
+.reflection p { margin-bottom: 12px; }
+
+/* REFERENCES */
+.references { margin-top: 48px; padding-top: 32px; border-top: 1px solid rgba(74,58,34,0.1); }
+.references h3 { font-family: var(--font-display); font-size: 18px; font-weight: 400; color: var(--camel-dark); margin-bottom: 16px; }
+.references p { font-size: 14px; color: var(--camel-light); line-height: 1.6; margin-bottom: 8px; }
+
+.next-project { margin-top: 48px; padding-top: 32px; border-top: 1px solid rgba(74,58,34,0.1); display: flex; justify-content: space-between; align-items: center; }
+.next-project a { font-size: 14px; font-weight: 500; color: var(--red); text-decoration: none; text-transform: uppercase; letter-spacing: 0.06em; display: inline-flex; align-items: center; gap: 6px; transition: gap 0.2s; }
+.next-project a:hover { gap: 10px; }
+footer { background: var(--black); padding: 24px 40px; text-align: center; font-size: 13px; color: var(--camel-light); }
+
+@media (max-width: 900px) {
+  .case-layout { grid-template-columns: 1fr; gap: 0; }
+  .side-nav { display: none; }
+  .case-hero h1 { font-size: 30px; }
+  .stats-bar, .metric-row, .framework-grid, .data-row, .assumption-block, .bem-grid { grid-template-columns: 1fr; }
+  .timeline-bar { grid-template-columns: 1fr 1fr; }
+  .case-hero { padding: 60px 24px 40px; }
+  .case-layout { padding: 40px 24px 80px; }
 }
 </style>
 </head>
 <body>
-<nav>
+
+<nav id="nav">
   <div class="nav-inner">
     <a href="index.html" class="nav-name">Ana Jackson</a>
     <ul class="nav-links">
@@ -130,19 +176,331 @@ footer {
       <li><a href="index.html#contact">Contact</a></li>
     </ul>
   </div>
+  <div class="scroll-progress" id="scrollProgress"></div>
 </nav>
-<img src="lmnop-aviation.jpeg" alt="Needs Assessment: LMNOP Aviation" class="hero-img">
-<div class="content">
-  <a href="index.html#portfolio" class="back-link">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
-    Back to portfolio
-  </a>
-  <h1 class="project-title">Needs Assessment: LMNOP Aviation</h1>
-  <div class="coming-soon">
-    Full project details coming soon.
-    <p>In the meantime, feel free to <a href="index.html#contact" style="color: var(--red);">reach out</a> to discuss this project.</p>
+
+<div class="case-hero">
+  <div class="case-hero-inner">
+    <a href="index.html#portfolio" class="back-link">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+      Back to portfolio
+    </a>
+    <div class="case-hero-label">Needs Assessment</div>
+    <h1>$28 million in performance gaps. Leadership asked for training. The data said otherwise.</h1>
+    <p class="case-hero-sub">A systematic needs assessment of LMNOP Aviation's domestic service center network revealed that the root causes were environmental, not individual.</p>
+    <div class="stats-bar">
+      <div class="stat-item"><div class="stat-label">Organization</div><div class="stat-value">LMNOP Aviation (pseudonym)</div></div>
+      <div class="stat-item"><div class="stat-label">Scope</div><div class="stat-value">11 service centers, 1,500+ employees</div></div>
+      <div class="stat-item"><div class="stat-label">Frameworks</div><div class="stat-value">BEM, Rummler-Brache Nine Boxes</div></div>
+      <div class="stat-item"><div class="stat-label">Data Collected</div><div class="stat-value">8 interviews, 300+ survey responses</div></div>
+    </div>
   </div>
 </div>
+
+<div class="case-layout">
+  <div class="side-nav" id="sideNav">
+    <a href="#challenge" class="active">The Challenge</a>
+    <a href="#methods">Methods</a>
+    <a href="#data">Data Collection</a>
+    <a href="#causes">Causes</a>
+    <a href="#bem">BEM Analysis</a>
+    <a href="#solutions">Intervention Selection</a>
+  </div>
+
+  <div class="case-content">
+
+    <!-- CHALLENGE -->
+    <div class="case-section" id="challenge">
+      <div class="case-section-label">The Challenge</div>
+      <p>LMNOP Aviation (a pseudonym) is a global aircraft maintenance provider. Its domestic service division has more than 1,500 employees and operates specialized maintenance facilities across the United States. Each service center handles scheduled and unscheduled aircraft maintenance events. These locations are also the organization's primary point of contact with its customers. The division's strategic goals are to improve profitability, operational efficiency, customer experience, and capacity.</p>
+      <p>Leadership asked our team to conduct a needs assessment after identifying performance gaps in two areas: productivity and invoice accuracy. At the time of the assessment, all but one site were missing goals for productivity, invoice accuracy, or both. The organization's target was 90% of sites meeting both goals. The estimated annual impact from productivity overruns was up to $18 million, with invoice-related losses ranging from $1.6 million to over $10 million. Inconsistent turnaround times made capacity planning difficult, and billing errors damaged customers' trust.</p>
+
+      <div class="metric-row">
+        <div class="metric-card">
+          <div class="metric-number">$18M</div>
+          <div class="metric-desc">Potential annual impact from productivity overruns</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-number">$10M+</div>
+          <div class="metric-desc">Potential annual impact from invoice-related losses</div>
+        </div>
+      </div>
+
+      <p>The initiative was sponsored by the Talent and Development Manager, with executive sponsorship from the Vice President of the Domestic Service Center Network. The VP believed that better training for Technical Service Managers (TSMs) and Customer Service Managers (CSMs), along with improved project planning, would be enough to close the gaps. This assumption made the needs assessment especially important. Its purpose was to test whether the problem was, in fact, a training problem.</p>
+
+      <div class="assumption-block">
+        <div class="assumption-side">
+          <div class="label">What leadership assumed</div>
+          <p>The VP believed that better training for Technical Service Managers and Customer Service Managers, along with improved project planning, would be enough to close the gaps.</p>
+        </div>
+        <div class="reality-side">
+          <div class="label">What the data revealed</div>
+          <p>These findings clearly showed that the performance problems were more impacted by organization-wide factors than individual ones. This directly contradicted the initial assumption. Training alone was not going to close the gaps.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- METHODS -->
+    <div class="case-section" id="methods">
+      <div class="case-section-label">Methods</div>
+
+      <p>We combined two diagnostic frameworks to structure our analysis. Chevalier's Behavior Engineering Model (2003), a variation of Gilbert's original BEM, categorizes performance barriers into environmental supports (information, resources, and incentives) and individual factors (knowledge/skills, capacity, and motives). The model prioritizes looking at environmental factors first because they are usually easier and more cost-effective to address (Rothwell et al., 2018). This model lent itself well to examining whether individual technicians had the resources and skills they needed to perform their job well. However, during initial conversations with our sponsors and early extant data reviews, we found some evidence to suggest that internal processes may also have been a factor in the performance gap. We added Rummler and Brache's Nine-Variable Framework as a secondary framework, which examines performance at three levels (organization, process, and performer) across three dimensions (goals, design, and management) (Stefaniak, 2020).</p>
+
+      <div class="framework-grid">
+        <div class="framework-card">
+          <h4>Chevalier's BEM (2003)</h4>
+          <p>Categorizes performance barriers into environmental supports (information, resources, incentives) and individual factors (knowledge/skills, capacity, motives). Prioritizes environmental factors first.</p>
+        </div>
+        <div class="framework-card">
+          <h4>Rummler-Brache Nine Boxes</h4>
+          <p>Examines performance at three levels (organization, process, performer) across three dimensions (goals, design, management).</p>
+        </div>
+      </div>
+
+      <p>Using both frameworks helped us identify barriers and more easily categorize where they originated in the organization. For example, a barrier like "inconsistent feedback" looks different depending on whether it stems from an organizational policy gap, a broken process, or a manager's individual practice. Productivity lent itself to BEM coding because those gaps mapped most directly to performer-level barriers: tools, information, and skills. Invoice accuracy was better served by the Nine-Variable Framework because the problems cut across organizational, process, and performer levels in ways that we may have missed by examining BEM's categories alone.</p>
+    </div>
+
+    <!-- DATA COLLECTION AND ANALYSIS -->
+    <div class="case-section" id="data">
+      <div class="case-section-label">Data Collection and Analysis</div>
+
+      <p>To triangulate data, we collected it from three sources: extant data, interviews, and surveys. First, we examined internal Power BI metrics for each location, including productivity metrics, invoice accuracy rates, schedule adherence, customer satisfaction scores, headcount, attrition, and years of experience across all locations. We used those findings to identify two "exemplary" locations meeting goals, and two "non-exemplary" sites falling short. From there, we conducted 8 semi-structured interviews with TSMs and CSMs at these four sites. By contrasting performance factors at high-performing sites against those at low-performing ones, we could isolate what actually differentiated performance, as well as identify systemic issues impacting all sites. Interview questions were structured around the BEM and the Nine-Variable Models.</p>
+
+      <p>We also distributed role-specific surveys across the network to GMs, Maintenance Managers, TSMs, CSMs, and technicians, collecting 300 responses.</p>
+
+      <p>To analyze the qualitative data from interviews and open-ended survey questions, we developed a codebook based on both frameworks. When an issue fell into more than one category, multiple codes were applied so that we captured systemic patterns rather than treating each finding as isolated.</p>
+    </div>
+
+    <!-- CAUSES -->
+    <div class="case-section" id="causes">
+      <div class="case-section-label">Causes</div>
+
+      <p>For cause analysis, we used a three-step root cause process. We began by comparing those four sites. From there, Five Whys analysis helped us move past surface symptoms to isolate underlying conditions. Related causes were then grouped into themes and mapped against both target outcomes in a cause-problem overlap matrix. That matrix showed us which root causes affected both problems and allowed us to prioritize accordingly.</p>
+
+      <p>The assessment had several constraints. All data collection was remote, so we could not directly observe workflows or team coordination. Time limitations also narrowed our scope. We could only interview at a subset of locations, and support roles such as parts department staff, scheduling coordinators, and IT administrators fell outside our reach. Neither competitive benchmarking data nor compensation data was available. Our recommendations therefore relied on reported practices instead of observed practices. They may need adjustment during implementation.</p>
+
+      <p>Root causes clustered into seven themes. Five themes affected both productivity and invoice accuracy, and two were specific to one metric. Across both problems, the issues were inconsistent processes and SOPs, fragmented information and communication, clunky digital tools, uneven training and onboarding, and inconsistent accountability. The two remaining themes were metric-specific. Physical environment and equipment constraints affected productivity at certain sites. Role overload affected invoice accuracy: invoicing responsibilities were layered onto already full coordination roles, which left too little time for careful review.</p>
+
+      <div class="cause-theme">
+        <span class="scope">Both metrics</span>
+        <h4>Inconsistent processes and SOPs</h4>
+        <p>Core maintenance and invoicing processes varied from site to site, with no network-wide standards for planning, scheduling, work allocation, handoffs, invoice review, or quality control.</p>
+      </div>
+      <div class="cause-theme">
+        <span class="scope">Both metrics</span>
+        <h4>Fragmented information and communication</h4>
+        <p>Technical data and project updates were spread across multiple systems and informal channels with no single system of record.</p>
+      </div>
+      <div class="cause-theme">
+        <span class="scope">Both metrics</span>
+        <h4>Clunky digital tools</h4>
+        <p>Systems required manual workarounds, validation was limited, updates were poorly communicated, and configuration differences across sites gave people uneven visibility into hours and job status.</p>
+      </div>
+      <div class="cause-theme">
+        <span class="scope">Both metrics</span>
+        <h4>Uneven training and onboarding</h4>
+        <p>Most staff learned through informal methods with no standardized competency expectations, no structured onboarding, and limited cross-training.</p>
+      </div>
+      <div class="cause-theme">
+        <span class="scope">Both metrics</span>
+        <h4>Inconsistent accountability</h4>
+        <p>Accountability and feedback practices varied by leader and site. Underperformance was not consistently addressed.</p>
+      </div>
+      <div class="cause-theme">
+        <span class="scope">Productivity only</span>
+        <h4>Physical environment and equipment constraints</h4>
+        <p>Outdated tools, facility limitations, and unreliable internet at certain sites.</p>
+      </div>
+      <div class="cause-theme">
+        <span class="scope">Invoice accuracy only</span>
+        <h4>Role overload</h4>
+        <p>Invoicing responsibilities were layered onto already full coordination roles, which left too little time for careful review.</p>
+      </div>
+
+      <!-- BEM INTERACTIVE GRID -->
+      <div class="bem-section" id="bem">
+        <p>Below are the findings for both metrics mapped to the BEM categories.</p>
+
+        <div class="bem-grid">
+          <div class="bem-header env">Environmental Factors</div>
+          <div class="bem-header ind">Individual Factors</div>
+
+          <div class="bem-cell" onclick="this.classList.toggle('expanded')">
+            <div class="bem-cell-title">Information / Feedback <span class="toggle">+</span></div>
+            <div class="bem-cell-preview">High impact finding</div>
+            <div class="bem-cell-detail">
+              <div class="bem-finding">Technical data and project updates were spread across multiple systems and informal channels (email, text, phone, ad hoc notes) with no single system of record</div>
+              <div class="bem-finding">People spent time searching for what they needed, missed updates, and had to redo work</div>
+              <div class="bem-finding">Accountability and feedback practices varied by leader and site; underperformance was not consistently addressed</div>
+              <div class="bem-verdict high">Major contributor to both productivity and invoice accuracy gaps</div>
+            </div>
+          </div>
+
+          <div class="bem-cell" onclick="this.classList.toggle('expanded')">
+            <div class="bem-cell-title">Knowledge / Skills <span class="toggle">+</span></div>
+            <div class="bem-cell-preview">High impact finding</div>
+            <div class="bem-cell-detail">
+              <div class="bem-finding">Most staff learned through informal methods with no standardized competency expectations, no structured onboarding, and limited cross-training</div>
+              <div class="bem-finding">Technician grade levels were unclear and inconsistent across the network</div>
+              <div class="bem-finding">Many CSMs lacked the technical knowledge needed for accurate invoice review</div>
+              <div class="bem-verdict high">Significant contributor, but driven by lack of systems and structure, not lack of individual effort</div>
+            </div>
+          </div>
+
+          <div class="bem-cell" onclick="this.classList.toggle('expanded')">
+            <div class="bem-cell-title">Tools / Resources <span class="toggle">+</span></div>
+            <div class="bem-cell-preview">High impact finding</div>
+            <div class="bem-cell-detail">
+              <div class="bem-finding">Systems were clunky and required manual workarounds; validation was limited and updates were poorly communicated</div>
+              <div class="bem-finding">Configuration differences across sites gave people uneven visibility into hours and job status</div>
+              <div class="bem-finding">Outdated physical tools, facility limitations, and unreliable internet at certain sites meant technicians spent time waiting, searching for equipment, and improvising</div>
+              <div class="bem-verdict high">Major contributor to both productivity and invoice accuracy gaps</div>
+            </div>
+          </div>
+
+          <div class="bem-cell" onclick="this.classList.toggle('expanded')">
+            <div class="bem-cell-title">Capacity / Fluency <span class="toggle">+</span></div>
+            <div class="bem-cell-preview">Moderate impact finding</div>
+            <div class="bem-cell-detail">
+              <div class="bem-finding">Invoicing responsibilities were layered onto already full coordination and leadership roles, which left too little time for careful review</div>
+              <div class="bem-finding">Role design and capacity constraints specific to invoice accuracy</div>
+              <div class="bem-verdict med">Moderate contributor, primarily affecting invoice accuracy through role overload</div>
+            </div>
+          </div>
+
+          <div class="bem-cell" onclick="this.classList.toggle('expanded')">
+            <div class="bem-cell-title">Incentives / Accountability <span class="toggle">+</span></div>
+            <div class="bem-cell-preview">Contributing factor</div>
+            <div class="bem-cell-detail">
+              <div class="bem-finding">Leadership compensation structures made advancement unattractive</div>
+              <div class="bem-finding">Core maintenance and invoicing processes varied from site to site, with no network-wide standards; managers decided on their own how to handle most situations</div>
+              <div class="bem-verdict med">Contributing factor through inconsistent accountability structures</div>
+            </div>
+          </div>
+
+          <div class="bem-cell" onclick="this.classList.toggle('expanded')">
+            <div class="bem-cell-title">Motives / Alignment <span class="toggle">+</span></div>
+            <div class="bem-cell-preview">Not a significant factor</div>
+            <div class="bem-cell-detail">
+              <div class="bem-finding">Staff were generally motivated but frustrated by environmental barriers they could not control</div>
+              <div class="bem-finding">The desire to do good work was present; the conditions to do it were not</div>
+              <div class="bem-verdict low">Not a significant contributor. This is the most important cell: the people were not the problem.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p>These findings clearly showed that the performance problems were more impacted by organization-wide factors than individual ones. This directly contradicted the initial assumption. Training alone was not going to close the gaps. Survey results reinforced this finding. The three lowest-scoring BEM categories across the network were information, resources, and knowledge. Although knowledge could be addressed by training, it was not an appropriate solution for information and resource issues.</p>
+
+      <!-- KEY FINDING -->
+      <div class="key-finding" id="discovery">
+        <div class="case-section-label">Key Finding</div>
+        <p class="key-finding-text">Differences in performance across sites reflected less about individual effort and more about whether sites are consistently enabled with standard work, usable systems, mentoring, and sufficient role capacity by site leadership.</p>
+      </div>
+
+    </div>
+
+    <!-- SOLUTIONS -->
+    <div class="case-section" id="solutions">
+      <div class="case-section-label">Intervention Selection</div>
+      <p>Selecting interventions required us to weigh the impact of the intervention against its feasibility and alignment with LMNOP's strategic goals. We started by using SWOT analysis to identify which root causes would have the greatest impact, evaluating each cause theme's strengths, weaknesses, opportunities, and threats. This told us where the organization already had assets to build on and where the biggest risks lay. From there, we used a Multi-Criteria Analysis to help prioritize potential solutions (Watkins et al., 2011). Rather than selecting interventions in isolation, we met with a core group of General Managers to define the feasibility criteria. Their input produced six weighted dimensions: cost, work stoppage, speed of implementation, sustainability, impact on performance metrics, and number of locations affected. Each potential intervention was scored against these criteria. The scores gave us an objective way to compare interventions instead of relying on our best guess. We organized the resulting recommendations into three levels based on systemic impact.</p>
+
+      <div class="case-section-label" style="margin-top: 40px;">Recommended Solutions</div>
+
+      <div class="rec-tier">
+        <div class="rec-tier-label">First level: shared root causes across both metrics</div>
+        <div class="rec-card">
+          <h4>Standardize processes</h4>
+          <p>Standardizing processes meant documenting network-wide SOPs for project planning, scheduling, invoice review, quality control, work allocation, and communication, drawing on best practices from exemplary sites.</p>
+        </div>
+        <div class="rec-card">
+          <h4>Improve tools and systems</h4>
+          <p>For tools and systems, the recommendation was to centralize documentation access, define a single system of record for each maintenance event, and put change management practices in place for system updates.</p>
+        </div>
+        <div class="rec-card">
+          <h4>Formalize knowledge transfer</h4>
+          <p>The knowledge transfer recommendation called for structured mentoring, standardized onboarding for technicians and CSMs, and a competency model with certification pathways tied to technician grade levels.</p>
+        </div>
+      </div>
+
+      <div class="rec-tier">
+        <div class="rec-tier-label">Second level: more complex to implement</div>
+        <div class="rec-card">
+          <h4>Strengthen performance management and enable peer learning</h4>
+          <p>Strengthening performance management through manager training on consistent feedback, developing career pathways, and enabling peer learning through site champions and role shadowing.</p>
+        </div>
+      </div>
+
+      <div class="rec-tier">
+        <div class="rec-tier-label">Third level: site-specific infrastructure</div>
+        <div class="rec-card">
+          <h4>Address site-specific infrastructure needs</h4>
+          <p>Tool and equipment issues, parts storage, and hangar capacity.</p>
+        </div>
+      </div>
+
+      <h3 style="margin-top: 40px;">Implementation plan</h3>
+      <p>The implementation plan would take 12 to 18 months to complete. It started with a cross-functional working group in Phase 0, then moved to standardizing SOPs, with "quick wins" such as an invoice quality control checklist. Tools and knowledge transfer would follow, with later phases adding the remaining recommendations and ongoing evaluation through KPIs and quarterly reviews.</p>
+      <div class="timeline-bar">
+        <div class="timeline-phase"><h5>Phase 0-1</h5><p>Form working group. Standardize SOPs. Quick wins.</p></div>
+        <div class="timeline-phase"><h5>Phase 2</h5><p>Tools and systems. Centralize documentation.</p></div>
+        <div class="timeline-phase"><h5>Phase 3</h5><p>Knowledge transfer. Mentoring and onboarding.</p></div>
+        <div class="timeline-phase"><h5>Phase 4</h5><p>Remaining recommendations. Ongoing evaluation via KPIs.</p></div>
+      </div>
+    </div>
+
+
+
+    <div class="references">
+      <h3>References</h3>
+      <p>Chevalier, R. (2003). Updating the behavior engineering model. <em>Performance Improvement, 42</em>(5), 8-14.</p>
+      <p>Rothwell, W. J., Hohne, C. K., & King, S. B. (2018). <em>Human performance improvement: Building practitioner performance.</em> Routledge.</p>
+      <p>Stefaniak, J. (2020). <em>Needs assessment for learning and performance.</em> Routledge.</p>
+      <p>Watkins, R., Meiers, M. W., & Visser, Y. L. (2011). <em>A guide to assessing needs: Essential tools for collecting information, making decisions, and achieving development results.</em> World Bank.</p>
+    </div>
+
+    <div class="references">
+      <h3>Appendix</h3>
+      <p style="font-size: 16px; color: var(--camel-mid); margin-bottom: 16px;">The full report includes the needs assessment findings, codebook, survey instruments, and presentation slides.</p>
+      <a href="Needs Assessment Final Report - Portfolio.pdf" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: var(--white); border: 1px solid var(--red); border-radius: 6px; color: var(--red); font-weight: 500; font-size: 15px; text-decoration: none; transition: background 0.2s, color 0.2s;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Full Report (PDF)
+      </a>
+    </div>
+
+    <div class="next-project">
+      <a href="index.html#portfolio"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg> All projects</a>
+      <a href="tamrack-neo.html">Next project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    </div>
+  </div>
+</div>
+
 <footer>&copy; 2026 Ana Jackson. Built with care.</footer>
+
+<script>
+const nav = document.getElementById('nav');
+const progressBar = document.getElementById('scrollProgress');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  progressBar.style.width = (window.scrollY / docHeight) * 100 + '%';
+});
+const sideLinks = document.querySelectorAll('.side-nav a');
+const caseSections = document.querySelectorAll('.case-section, .key-finding, .reflection, .bem-section');
+const sideObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      sideLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + id));
+    }
+  });
+}, { rootMargin: '-30% 0px -65% 0px' });
+caseSections.forEach(s => sideObserver.observe(s));
+const fadeEls = document.querySelectorAll('.case-section, .key-finding, .reflection, .metric-card, .framework-card, .data-card, .cause-theme, .rec-card, .assumption-block, .bem-section');
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => { if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; } });
+}, { threshold: 0.1 });
+fadeEls.forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(16px)'; el.style.transition = 'opacity 0.6s ease, transform 0.6s ease'; fadeObserver.observe(el); });
+</script>
 </body>
 </html>
