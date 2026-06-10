@@ -102,6 +102,22 @@ nav.scrolled { box-shadow: 0 1px 12px rgba(74,58,34,0.06); }
 .rule-item { display: flex; gap: 12px; align-items: flex-start; padding: 8px 0; }
 .rule-item .n { flex-shrink: 0; width: 22px; height: 22px; line-height: 22px; text-align: center; background: var(--black); color: var(--cream); border-radius: 50%; font-size: 12px; font-weight: 600; font-family: var(--font-display); }
 .rule-item p { font-size: 15px; color: var(--camel-dark); line-height: 1.5; margin: 0; }
+.rubric-note { font-size: 14px; color: var(--camel-mid); line-height: 1.6; margin: 18px 0 26px; padding-left: 14px; border-left: 2px solid var(--camel-shoe); }
+.dim-rubric { background: var(--white); border: 1px solid rgba(74,58,34,0.08); border-radius: 8px; margin: 26px 0; overflow: hidden; }
+.dim-rubric .dr-head { font-size: 11px; font-weight: 600; color: var(--red); text-transform: uppercase; letter-spacing: 0.08em; padding: 18px 22px 0; }
+.dim-rubric .dr-sub { font-size: 14px; color: var(--camel-mid); line-height: 1.55; padding: 6px 22px 16px; }
+.dr-row { display: flex; gap: 18px; padding: 16px 22px; border-top: 1px solid rgba(74,58,34,0.08); align-items: flex-start; }
+.dr-name { flex-shrink: 0; width: 150px; }
+.dr-chip { display: inline-block; font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 12px; }
+.dr-chip.c-ex { background: #DCEFDC; color: #2E7D32; }
+.dr-chip.c-me { background: #E4EFF7; color: #2C6E9B; }
+.dr-chip.c-in { background: #FFF8E1; color: #B26B00; }
+.dr-chip.c-sp { background: var(--red-light); color: var(--red-dark); }
+.dr-conds { flex: 1; }
+.dr-cond { font-size: 14px; color: var(--camel-mid); line-height: 1.5; margin-bottom: 7px; }
+.dr-cond:last-child { margin-bottom: 0; }
+.dr-cond .dr-lbl { font-weight: 600; color: var(--camel-dark); }
+@media (max-width: 560px) { .dr-row { flex-direction: column; gap: 10px; } .dr-name { width: auto; } }
 .rule-figure { margin: 28px 0 8px; }
 .rule-figure svg { width: 100%; height: auto; display: block; }
 .rule-figcap { font-size: 13px; font-style: italic; color: var(--camel-light); text-align: center; margin-bottom: 14px; }
@@ -367,15 +383,38 @@ footer { background: var(--black); padding: 24px 40px; text-align: center; font-
         <div class="rubric-step r4"><div class="r-label">Exceeds Expectations</div><div class="r-band">avg 4.0 to 5.0</div></div>
       </div>
 
-      <div class="rule-box">
-        <div class="rule-label">The rule for the top rating</div>
-        <div class="rule-item">
-          <span class="n">1</span>
-          <p>A source reaches Exceeds only if its average is 4.0 to 5.0 with no disagree responses.</p>
+      <p class="rubric-note">These bands define only the quantitative component of each source's rating. Surveys additionally required no disagree responses to reach Exceeds, and interviews required the qualitative comments to align with the band at every level.</p>
+
+      <div class="dim-rubric">
+        <div class="dr-head">Dimensional triangulation rubric</div>
+        <div class="dr-sub">Source ratings then combined into one dimension rating. Role Readiness drew on four sources and Feeling Welcomed on two, so each outcome has a four-source and a two-source form.</div>
+        <div class="dr-row">
+          <div class="dr-name"><span class="dr-chip c-ex">Exceeds</span></div>
+          <div class="dr-conds">
+            <div class="dr-cond"><span class="dr-lbl">Four sources:</span> at least three of four reach Exceeds, and none fall to Improvement Needed or Serious Problems.</div>
+            <div class="dr-cond"><span class="dr-lbl">Two sources:</span> both reach Exceeds.</div>
+          </div>
         </div>
-        <div class="rule-item">
-          <span class="n">2</span>
-          <p>A dimension reaches Exceeds only if at least three of its four sources reach Exceeds (or both, where a dimension has two), and no source falls to Improvement Needed or Serious Problems.</p>
+        <div class="dr-row">
+          <div class="dr-name"><span class="dr-chip c-me">Met</span></div>
+          <div class="dr-conds">
+            <div class="dr-cond"><span class="dr-lbl">Four sources:</span> at least three of four reach Met or higher, and none fall to Serious Problems.</div>
+            <div class="dr-cond"><span class="dr-lbl">Two sources:</span> both reach Met or higher.</div>
+          </div>
+        </div>
+        <div class="dr-row">
+          <div class="dr-name"><span class="dr-chip c-in">Improvement Needed</span></div>
+          <div class="dr-conds">
+            <div class="dr-cond"><span class="dr-lbl">Four sources:</span> two or more reach Improvement Needed, or any single source reaches Serious Problems.</div>
+            <div class="dr-cond"><span class="dr-lbl">Two sources:</span> either source reaches Improvement Needed, and neither reaches Serious Problems.</div>
+          </div>
+        </div>
+        <div class="dr-row">
+          <div class="dr-name"><span class="dr-chip c-sp">Serious Problems</span></div>
+          <div class="dr-conds">
+            <div class="dr-cond"><span class="dr-lbl">Four sources:</span> two or more reach Serious Problems.</div>
+            <div class="dr-cond"><span class="dr-lbl">Two sources:</span> either source reaches Serious Problems.</div>
+          </div>
         </div>
       </div>
 
@@ -423,6 +462,7 @@ footer { background: var(--black); padding: 24px 40px; text-align: center; font-
           </g>
         </svg>
       </div>
+      <p style="font-size: 14px; color: var(--camel-light); margin-top: 24px;">More detail on the rubric, including the full instruments and per-source criteria, is available in Appendix C of <a href="tamrack-neo-evaluation-report.pdf" target="_blank" style="color: var(--red); text-decoration: underline;">the full report</a>.</p>
     </div>
 
     <!-- ROLE READINESS -->
@@ -558,7 +598,7 @@ const sideObserver = new IntersectionObserver((entries) => {
 }, { rootMargin: '-30% 0px -65% 0px' });
 caseSections.forEach(s => sideObserver.observe(s));
 
-const fadeEls = document.querySelectorAll('.case-section, .dimension-card, .plm, .rubric-scale, .rule-box, .rollup, .rec-card');
+const fadeEls = document.querySelectorAll('.case-section, .dimension-card, .plm, .rubric-scale, .dim-rubric, .rollup, .rec-card');
 const fadeObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => { if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; } });
 }, { threshold: 0.1 });
