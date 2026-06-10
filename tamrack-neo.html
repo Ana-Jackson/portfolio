@@ -3,123 +3,156 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Program Evaluation: Tamrack NEO | Ana Jackson</title>
+<title>Is our onboarding actually working? | Ana Jackson</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --cream: #FAF7F2;
-  --cream-dark: #F0E6D9;
-  --camel-dark: #4A3A22;
-  --camel-mid: #6B5638;
-  --camel-light: #8A7556;
-  --camel-shoe: #C6A882;
-  --red: #E03C31;
-  --red-dark: #B82E25;
-  --black: #1C1C1C;
-  --white: #FFFFFF;
+  --cream: #FAF7F2; --cream-dark: #F0E6D9; --cream-mid: #E8DDD0;
+  --camel-dark: #4A3A22; --camel-mid: #6B5638; --camel-light: #8A7556; --camel-shoe: #C6A882;
+  --red: #E03C31; --red-dark: #B82E25; --red-light: #F5E0DE;
+  --black: #1C1C1C; --white: #FFFFFF;
   --font-display: 'Libre Baskerville', Georgia, serif;
   --font-body: 'Source Sans 3', 'Segoe UI', sans-serif;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-  font-family: var(--font-body);
-  color: var(--camel-mid);
-  background: var(--cream);
-  font-size: 17px;
-  line-height: 1.7;
-  -webkit-font-smoothing: antialiased;
-}
-nav {
-  background: var(--cream);
-  border-bottom: 1px solid rgba(74, 58, 34, 0.08);
-}
-.nav-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px 40px;
-}
-.nav-name {
-  font-family: var(--font-display);
-  font-size: 18px;
-  color: var(--camel-dark);
-  text-decoration: none;
-}
+body { font-family: var(--font-body); color: var(--camel-mid); background: var(--cream); font-size: 17px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+nav { position: fixed; top: 0; width: 100%; z-index: 100; background: var(--cream); border-bottom: 1px solid rgba(74,58,34,0.08); transition: box-shadow 0.3s; }
+nav.scrolled { box-shadow: 0 1px 12px rgba(74,58,34,0.06); }
+.scroll-progress { position: absolute; bottom: 0; left: 0; height: 3px; width: 0%; background: var(--red); z-index: 101; }
+.nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 18px 40px; }
+.nav-name { font-family: var(--font-display); font-size: 18px; color: var(--camel-dark); text-decoration: none; }
 .nav-links { display: flex; gap: 32px; list-style: none; }
-.nav-links a {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--camel-light);
-  text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  transition: color 0.2s;
-}
+.nav-links a { font-size: 14px; font-weight: 500; color: var(--camel-light); text-decoration: none; text-transform: uppercase; letter-spacing: 0.08em; transition: color 0.2s; }
 .nav-links a:hover { color: var(--red); }
-.hero-img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-}
-.content {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 60px 40px 100px;
-}
-.back-link {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--red);
-  text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 32px;
-  transition: gap 0.2s;
-}
-.back-link:hover { gap: 10px; }
-.project-title {
-  font-family: var(--font-display);
-  font-size: 32px;
-  font-weight: 400;
-  color: var(--camel-dark);
-  line-height: 1.35;
-  margin-bottom: 24px;
-}
-.coming-soon {
-  padding: 40px;
-  background: var(--white);
-  border-radius: 8px;
-  border: 1px solid rgba(74, 58, 34, 0.08);
-  text-align: center;
-  color: var(--camel-light);
-  font-size: 17px;
-}
-.coming-soon p { margin-top: 8px; font-size: 15px; }
-footer {
-  background: var(--black);
-  padding: 24px 40px;
-  text-align: center;
-  font-size: 13px;
-  color: var(--camel-light);
-}
-@media (max-width: 768px) {
-  .nav-inner { padding: 14px 24px; }
-  .nav-links { gap: 20px; }
-  .nav-links a { font-size: 12px; }
-  .content { padding: 40px 24px 80px; }
-  .project-title { font-size: 26px; }
+
+/* HERO */
+.case-hero { margin-top: 60px; background: var(--black); padding: 80px 40px 60px; }
+.case-hero-inner { max-width: 1100px; margin: 0 auto; }
+.case-hero .back-link { font-size: 14px; font-weight: 500; color: var(--camel-shoe); text-decoration: none; text-transform: uppercase; letter-spacing: 0.06em; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 32px; transition: gap 0.2s; }
+.case-hero .back-link:hover { gap: 10px; color: var(--cream); }
+.case-hero-label { font-size: 13px; font-weight: 500; color: var(--red); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; }
+.case-hero h1 { font-family: var(--font-display); font-size: 40px; font-weight: 400; color: var(--cream); line-height: 1.3; max-width: 800px; margin-bottom: 20px; }
+.case-hero-sub { font-size: 19px; color: var(--camel-shoe); max-width: 660px; line-height: 1.6; margin-bottom: 40px; }
+.stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(198,168,130,0.15); border-radius: 8px; overflow: hidden; margin-top: 20px; }
+.stat-item { background: var(--black); padding: 24px 28px; }
+.stat-label { font-size: 11px; font-weight: 500; color: var(--camel-light); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+.stat-value { font-family: var(--font-display); font-size: 16px; color: var(--cream); font-weight: 400; }
+
+/* LAYOUT */
+.case-layout { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 200px 1fr; gap: 60px; padding: 60px 40px 100px; }
+.side-nav { position: sticky; top: 100px; align-self: start; }
+.side-nav a { display: block; padding: 8px 0; font-size: 13px; font-weight: 500; color: var(--camel-light); text-decoration: none; text-transform: uppercase; letter-spacing: 0.04em; border-left: 2px solid transparent; padding-left: 16px; transition: all 0.2s; }
+.side-nav a:hover, .side-nav a.active { color: var(--red); border-left-color: var(--red); }
+.case-content { max-width: 720px; }
+.case-section { margin-bottom: 64px; }
+.case-section-label { font-size: 15px; font-weight: 500; color: var(--red); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+.case-section h2 { font-family: var(--font-display); font-size: 28px; font-weight: 400; color: var(--camel-dark); line-height: 1.35; margin-bottom: 24px; }
+.case-section p { margin-bottom: 16px; }
+.case-content h3 { font-family: var(--font-display); font-size: 18px; font-weight: 400; color: var(--camel-dark); margin-bottom: 12px; }
+
+/* METRICS */
+
+/* PROGRAM LOGIC MODEL */
+.plm { margin: 16px 0 28px; }
+.plm-flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px; }
+.plm-stage { position: relative; background: var(--white); border: 1px solid rgba(74,58,34,0.1); border-bottom: none; border-radius: 8px 8px 0 0; padding: 16px 14px; font-family: var(--font-body); font-size: 14px; font-weight: 600; color: var(--camel-light); cursor: pointer; text-align: left; display: flex; align-items: center; gap: 8px; transition: background 0.25s, color 0.25s; }
+.plm-stage:hover { color: var(--camel-dark); background: var(--cream); }
+.plm-stage.active { background: var(--black); color: var(--cream); border-color: var(--black); }
+.plm-num { flex-shrink: 0; width: 22px; height: 22px; line-height: 22px; text-align: center; background: var(--red-light); color: var(--red-dark); border-radius: 50%; font-size: 12px; font-weight: 600; }
+.plm-stage.active .plm-num { background: var(--red); color: var(--white); }
+.plm-panel { display: none; background: var(--white); border: 1px solid rgba(74,58,34,0.1); border-radius: 0 0 8px 8px; padding: 28px 32px; }
+.plm-panel.active { display: block; animation: plmFade 0.35s ease; }
+@keyframes plmFade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.plm-q { font-size: 14px; font-style: italic; color: var(--camel-light); margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid rgba(74,58,34,0.08); }
+.plm-list { columns: 2; column-gap: 36px; }
+.plm-item { font-size: 14.5px; color: var(--camel-mid); line-height: 1.5; padding: 5px 0 5px 16px; position: relative; break-inside: avoid; }
+.plm-item::before { content: ''; width: 5px; height: 5px; background: var(--red); border-radius: 50%; position: absolute; left: 0; top: 13px; }
+.plm-group { break-inside: avoid; padding: 6px 0; margin-bottom: 2px; }
+.plm-group-label { font-size: 14.5px; font-weight: 600; color: var(--camel-dark); padding-bottom: 4px; }
+.plm-subitem { font-size: 14.5px; color: var(--camel-light); line-height: 1.5; padding: 5px 0 5px 16px; position: relative; }
+.plm-subitem::before { content: ''; width: 5px; height: 5px; background: var(--red); border-radius: 50%; position: absolute; left: 0; top: 13px; }
+
+/* DIMENSION CARDS */
+.dimension-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+.dimension-card { background: var(--white); border-radius: 8px; padding: 24px; border: 1px solid rgba(74,58,34,0.06); border-top: 3px solid var(--camel-shoe); }
+.dimension-card h4 { font-size: 16px; font-weight: 600; color: var(--camel-dark); margin-bottom: 8px; }
+.dimension-card p { font-size: 14px; color: var(--camel-mid); line-height: 1.6; margin: 0; }
+
+/* INSTRUMENTS */
+
+/* RUBRIC SCALE */
+.rubric-scale { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin: 28px 0 12px; border-radius: 8px; overflow: hidden; }
+.rubric-step { padding: 16px 14px; text-align: center; }
+.rubric-step .r-label { font-size: 13px; font-weight: 600; }
+.rubric-step.r1 { background: var(--red-light); }
+.rubric-step.r1 .r-label { color: var(--red-dark); }
+.rubric-step.r2 { background: #FFF8E1; }
+.rubric-step.r2 .r-label { color: #F57F17; }
+.rubric-step.r3 { background: #E4EFF7; }
+.rubric-step.r3 .r-label { color: #2C6E9B; }
+.rubric-step.r4 { background: #DCEFDC; }
+.rubric-step.r4 .r-label { color: #2E7D32; }
+.rubric-step .r-band { font-size: 11px; font-weight: 500; color: var(--camel-mid); margin-top: 5px; }
+
+/* RULE BOX */
+.rule-box { background: var(--white); border: 1px solid rgba(74,58,34,0.08); border-left: 3px solid var(--red); border-radius: 8px; padding: 24px 28px; margin: 28px 0; }
+.rule-box .rule-label { font-size: 11px; font-weight: 600; color: var(--red); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; }
+.rule-item { display: flex; gap: 12px; align-items: flex-start; padding: 8px 0; }
+.rule-item .n { flex-shrink: 0; width: 22px; height: 22px; line-height: 22px; text-align: center; background: var(--black); color: var(--cream); border-radius: 50%; font-size: 12px; font-weight: 600; font-family: var(--font-display); }
+.rule-item p { font-size: 15px; color: var(--camel-dark); line-height: 1.5; margin: 0; }
+.rule-figure { margin: 28px 0 8px; }
+.rule-figure svg { width: 100%; height: auto; display: block; }
+.rule-figcap { font-size: 13px; font-style: italic; color: var(--camel-light); text-align: center; margin-bottom: 14px; }
+
+/* TRIANGULATION ROLL-UP */
+.rollup { margin: 32px 0 8px; }
+.tri-sources { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 8px; }
+.tri-source { background: var(--white); border: 1px solid rgba(74,58,34,0.1); border-radius: 8px; padding: 14px 16px; flex: 1; min-width: 150px; }
+.tri-source .src-name { font-size: 13px; font-weight: 600; color: var(--camel-dark); margin-bottom: 8px; }
+.rating-badge { display: inline-block; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; padding: 3px 10px; border-radius: 12px; }
+.rating-badge.exceeds { background: #E8F5E9; color: #2E7D32; }
+.rating-badge.met { background: #E4EFF7; color: #2C6E9B; }
+.tri-arrow { text-align: center; color: var(--red); font-size: 22px; margin: 6px 0; }
+.tri-result { background: var(--cream-dark); border-radius: 8px; padding: 24px 28px; text-align: center; }
+.tri-result .res-eyebrow { font-size: 11px; font-weight: 600; color: var(--camel-light); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+.tri-result .res-rating { font-family: var(--font-display); font-size: 24px; color: var(--camel-dark); margin-bottom: 10px; }
+.tri-result .res-note { font-size: 14px; color: var(--camel-mid); line-height: 1.5; max-width: 520px; margin: 0 auto; }
+.tri-importance { display: inline-block; font-size: 11px; font-weight: 600; color: var(--red-dark); background: var(--red-light); padding: 2px 10px; border-radius: 12px; text-transform: uppercase; letter-spacing: 0.04em; margin-top: 12px; }
+
+/* RECOMMENDATIONS (priority order) */
+.rec-card { padding: 24px 28px; background: var(--white); border-radius: 8px; margin-bottom: 12px; border: 1px solid var(--red); display: flex; gap: 18px; align-items: flex-start; }
+.rec-card .priority { flex-shrink: 0; width: 34px; height: 34px; line-height: 34px; text-align: center; background: var(--red); color: var(--white); border-radius: 50%; font-family: var(--font-display); font-size: 17px; font-weight: 700; }
+.rec-card h4 { font-size: 16px; font-weight: 600; color: var(--camel-dark); margin-bottom: 8px; }
+.rec-card p { font-size: 15px; color: var(--camel-mid); line-height: 1.6; margin: 0; }
+
+/* REFERENCES */
+.references { margin-top: 48px; padding-top: 32px; border-top: 1px solid rgba(74,58,34,0.1); }
+.references h3 { font-family: var(--font-display); font-size: 18px; font-weight: 400; color: var(--camel-dark); margin-bottom: 16px; }
+.references p { font-size: 14px; color: var(--camel-light); line-height: 1.6; margin-bottom: 8px; }
+
+.next-project { margin-top: 48px; padding-top: 32px; border-top: 1px solid rgba(74,58,34,0.1); display: flex; justify-content: space-between; align-items: center; }
+.next-project a { font-size: 14px; font-weight: 500; color: var(--red); text-decoration: none; text-transform: uppercase; letter-spacing: 0.06em; display: inline-flex; align-items: center; gap: 6px; transition: gap 0.2s; }
+.next-project a:hover { gap: 10px; }
+footer { background: var(--black); padding: 24px 40px; text-align: center; font-size: 13px; color: var(--camel-light); }
+
+@media (max-width: 900px) {
+  .case-layout { grid-template-columns: 1fr; gap: 0; padding: 40px 24px 80px; }
+  .side-nav { display: none; }
+  .case-hero h1 { font-size: 30px; }
+  .case-hero { padding: 60px 24px 40px; }
+  .stats-bar, .dimension-grid, .rubric-scale { grid-template-columns: 1fr; }
+  .plm-flow { grid-template-columns: 1fr 1fr; }
+  .plm-stage { border-radius: 8px; border-bottom: 1px solid rgba(74,58,34,0.1); }
+  .plm-panel { border-radius: 8px; margin-top: 2px; }
+  .plm-list { columns: 1; }
 }
 </style>
 </head>
 <body>
-<nav>
+
+<nav id="nav">
   <div class="nav-inner">
     <a href="index.html" class="nav-name">Ana Jackson</a>
     <ul class="nav-links">
@@ -130,19 +163,417 @@ footer {
       <li><a href="index.html#contact">Contact</a></li>
     </ul>
   </div>
+  <div class="scroll-progress" id="scrollProgress"></div>
 </nav>
-<img src="tamrack-neo.jpeg" alt="Program Evaluation: Tamrack NEO" class="hero-img">
-<div class="content">
-  <a href="index.html#portfolio" class="back-link">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
-    Back to portfolio
-  </a>
-  <h1 class="project-title">Program Evaluation: Tamrack NEO</h1>
-  <div class="coming-soon">
-    Full project details coming soon.
-    <p>In the meantime, feel free to <a href="index.html#contact" style="color: var(--red);">reach out</a> to discuss this project.</p>
+
+<div class="case-hero">
+  <div class="case-hero-inner">
+    <a href="index.html#portfolio" class="back-link">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+      Back to portfolio
+    </a>
+    <div class="case-hero-label">Program Evaluation</div>
+    <h1>The onboarding had never been measured against its goals. This showed it was working, and surfaced a gap their survey would never have caught.</h1>
+    <p class="case-hero-sub">Tamrack had been measuring its New Employee Onboarding program with a single participant sentiment survey. We measured it with four data sources, two stakeholder groups, and a rubric built to catch what one survey would miss.</p>
+    <div class="stats-bar">
+      <div class="stat-item"><div class="stat-label">Organization</div><div class="stat-value">Tamrack, Inc. (simulated)</div></div>
+      <div class="stat-item"><div class="stat-label">Scope</div><div class="stat-value">Structured first-week onboarding</div></div>
+      <div class="stat-item"><div class="stat-label">Frameworks</div><div class="stat-value">Kellogg Logic Model, Chyung's 10-Step Evaluation Procedure</div></div>
+      <div class="stat-item"><div class="stat-label">Data Collected</div><div class="stat-value">41 survey responses, 7 interviews</div></div>
+    </div>
   </div>
 </div>
+
+<div class="case-layout">
+  <div class="side-nav" id="sideNav">
+    <a href="#background" class="active">Background</a>
+    <a href="#methods">Methods</a>
+    <a href="#role-readiness">Role Readiness</a>
+    <a href="#feeling-welcomed">Feeling Welcomed</a>
+    <a href="#conclusions">Conclusions</a>
+    <a href="#limitations">Limitations</a>
+  </div>
+
+  <div class="case-content">
+
+    <!-- BACKGROUND -->
+    <div class="case-section" id="background">
+      <div class="case-section-label">Background</div>
+      <p>Tamrack, Inc. is a cleaning supply company with more than 200 employees in five states. Its customers are hospitals and nursing homes. In 2020, the company's Learning and Performance Solutions (LPS) department revised its New Employee Onboarding (NEO) program for virtual delivery. Since then, the program has undergone several revisions, but it had never been formally evaluated. The only feedback the program collected was a single survey at the end of each new hire's first month.</p>
+
+      <p>Tamrack's Director of Learning and Performance Solutions asked our team to conduct a formative, goal-based evaluation of the program, which we used Chyung's 10-step evaluation procedure (2019) to complete. We also limited our scope to the structured first-week onboarding experience and set aside pre-boarding activities and the informal one-month integration period that followed.</p>
+
+      <p>The NEO program lacked stated performance objectives or named outcomes. Before we could evaluate the program against its goals, we had to establish what those goals were. Working with the client, we used Kellogg's program logic model (2019) to identify the program's resources, activities, outputs, outcomes, and intended impact, then used the model to guide our data collection plan and instruments.</p>
+
+      <p style="font-size: 15px; color: var(--camel-light); margin-bottom: 4px;">Select a stage to see the full model we built with the client.</p>
+      <div class="plm">
+        <div class="plm-flow">
+          <button class="plm-stage active" data-stage="resources"><span class="plm-num">1</span>Resources</button>
+          <button class="plm-stage" data-stage="activities"><span class="plm-num">2</span>Activities</button>
+          <button class="plm-stage" data-stage="outputs"><span class="plm-num">3</span>Outputs</button>
+          <button class="plm-stage" data-stage="outcomes"><span class="plm-num">4</span>Outcomes</button>
+          <button class="plm-stage" data-stage="impact"><span class="plm-num">5</span>Impact</button>
+        </div>
+
+        <div class="plm-panel active" id="plm-resources">
+          <p class="plm-q">What resources should be used to run the program?</p>
+          <div class="plm-list">
+            <div class="plm-item">Video conference for synchronous sessions</div>
+            <div class="plm-item">Learning Management System (LMS)</div>
+            <div class="plm-item">Learning Performance Solutions staff and Instructional Designers</div>
+            <div class="plm-item">Input from HR Director</div>
+            <div class="plm-group">
+              <div class="plm-group-label">Organizational documentation</div>
+              <div class="plm-subitem">Employee handbook</div>
+              <div class="plm-subitem">Org chart</div>
+              <div class="plm-subitem">HR documentation and policies</div>
+              <div class="plm-subitem">Compliance policies</div>
+              <div class="plm-subitem">Workplace safety regulations</div>
+              <div class="plm-subitem">Data privacy and security policies</div>
+              <div class="plm-subitem">Job specific reference materials</div>
+              <div class="plm-subitem">Soft skills requirements</div>
+              <div class="plm-subitem">Tamrack company values and goals information</div>
+            </div>
+            <div class="plm-item">Onboarding portal</div>
+            <div class="plm-item">Orientation Feedback Survey</div>
+            <div class="plm-group">
+              <div class="plm-group-label">Personnel</div>
+              <div class="plm-subitem">CEO or Senior Exec</div>
+              <div class="plm-subitem">HR Director</div>
+              <div class="plm-subitem">HR Representative</div>
+              <div class="plm-subitem">IT Support</div>
+              <div class="plm-subitem">Mentor</div>
+              <div class="plm-subitem">Manager</div>
+              <div class="plm-subitem">Training and Development Coordinator</div>
+              <div class="plm-subitem">Health and Safety Officer</div>
+            </div>
+            <div class="plm-item">Trainees</div>
+          </div>
+        </div>
+
+        <div class="plm-panel" id="plm-activities">
+          <p class="plm-q">What activities should be performed to run the program?</p>
+          <div class="plm-list">
+            <div class="plm-group">
+              <div class="plm-group-label">Create program documentation</div>
+              <div class="plm-subitem">Onboarding Checklist</div>
+              <div class="plm-subitem">Welcome emails</div>
+            </div>
+            <div class="plm-item">Obtain organizational documentation</div>
+            <div class="plm-item">Develop or update synchronous presentations</div>
+            <div class="plm-group">
+              <div class="plm-group-label">Design and develop or update asynchronous training</div>
+              <div class="plm-subitem">Compliance</div>
+              <div class="plm-subitem">Soft Skills</div>
+              <div class="plm-subitem">Job-specific training</div>
+            </div>
+            <div class="plm-item">Upload asynchronous training to the LMS</div>
+            <div class="plm-item">Schedule presenters</div>
+            <div class="plm-item">Select and assign mentors</div>
+            <div class="plm-item">Conduct synchronous training session</div>
+            <div class="plm-item">Enroll new employees in self-paced training</div>
+            <div class="plm-item">Track training completions and assessment scores</div>
+            <div class="plm-item">Create and send post-program survey</div>
+          </div>
+        </div>
+
+        <div class="plm-panel" id="plm-outputs">
+          <p class="plm-q">What products should be produced to support the intended outcomes?</p>
+          <div class="plm-list">
+            <div class="plm-item">All new employees attend the program per month</div>
+            <div class="plm-item">All new employees complete the training</div>
+            <div class="plm-item">All new employees achieve minimum 80% assessment score</div>
+            <div class="plm-item">All new employees complete HR forms accurately and on time</div>
+            <div class="plm-item">All new employees set up workstation, VPN, and log into critical systems</div>
+            <div class="plm-group">
+              <div class="plm-group-label">All new employees meet with</div>
+              <div class="plm-subitem">Assigned mentor</div>
+              <div class="plm-subitem">Manager</div>
+              <div class="plm-subitem">Team</div>
+            </div>
+            <div class="plm-item">All new employees respond to the feedback survey</div>
+          </div>
+        </div>
+
+        <div class="plm-panel" id="plm-outcomes">
+          <p class="plm-q">What changes in the stakeholders should be made in the next 1 month (short-term) or 3 years (long-term)?</p>
+          <div class="plm-list">
+            <div class="plm-group">
+              <div class="plm-group-label">Short term</div>
+              <div class="plm-subitem">New employees feel prepared to work with mentor, manager, and team</div>
+              <div class="plm-subitem">New employees feel welcomed into Tamrack company culture, values, and norms</div>
+              <div class="plm-subitem">Employees are aware of company values</div>
+              <div class="plm-subitem">Employees follow company policies, regulations, and IT policies</div>
+            </div>
+            <div class="plm-group">
+              <div class="plm-group-label">Longer term</div>
+              <div class="plm-subitem">Employees feel confidence in performing basic to advanced job functions</div>
+              <div class="plm-subitem">Employees are confident navigating proprietary software and internal tools on-the-job</div>
+              <div class="plm-subitem">Employees apply active listening and conflict resolution techniques</div>
+              <div class="plm-subitem">Employees understand their safety responsibilities when handling hazardous materials and know where to go with questions</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="plm-panel" id="plm-impact">
+          <p class="plm-q">What changes in the organization and its society are expected in 1 to 3 years due to the outcomes?</p>
+          <div class="plm-list">
+            <div class="plm-item">Improved new hire readiness</div>
+            <div class="plm-item">Stronger connection to managers, mentors, and team</div>
+            <div class="plm-item">Reduced on-the-job errors</div>
+            <div class="plm-item">Sustained organizational culture of compassion, respect, and family</div>
+            <div class="plm-item">Maintain a safe and healthy workplace</div>
+            <div class="plm-item">Reduced legal and security incidents</div>
+            <div class="plm-item">Maintain compliance and legal standing</div>
+            <div class="plm-item">Ensure data security and confidentiality</div>
+            <div class="plm-item">Prevent bribery and corruption</div>
+            <div class="plm-item">Reduced employee turnover (3+ years)</div>
+          </div>
+        </div>
+      </div>
+
+      <p>We assessed two dimensions, identified with the client and aligned to the logic model.</p>
+      <div class="dimension-grid">
+        <div class="dimension-card">
+          <h4>Feeling Welcomed</h4>
+          <p>Whether new hires feel welcomed and integrated into Tamrack's culture and values.</p>
+        </div>
+        <div class="dimension-card">
+          <h4>Role Readiness</h4>
+          <p>Whether new hires are prepared to begin learning their roles with their managers and teams.</p>
+        </div>
+      </div>
+      <p>The client confirmed both dimensions as equally important to the organization, so we weighted them equally.</p>
+    </div>
+
+    <!-- METHODS -->
+    <div class="case-section" id="methods">
+      <div class="case-section-label">Methods</div>
+
+      <p>The program's only existing feedback came from a single survey administered after onboarding ended. A single self-report survey gives a narrow view of how a program is performing. Surveys are also prone to the ceiling effect, where most respondents cluster at the top of a scale and weaken any absolute judgment of quality (Chyung, 2019). So we designed an evaluation that drew on more than one source of data, each chosen to compensate for the others' weaknesses.</p>
+
+      <p>This approach is called critical multiplism. We collected data from two stakeholder groups using four instruments. We administered two anonymous, web-based surveys: one to all NEO participants who completed the program in 2025 (27 responses) and one to their managers (14 responses). Surveys let us collect both quantitative and qualitative self-reported data from the full population of both groups, but they can leave out important details, are vulnerable to low response rates, and rely on self-assessment. To offset these limitations, we conducted semi-structured, one-on-one video interviews with three managers and four recent NEO participants, selected through purposive sampling.</p>
+
+      <p>We rated quantitative survey items on a 5-point Likert scale: (1) Strongly Disagree, (2) Somewhat Disagree, (3) Neither Agree nor Disagree, (4) Somewhat Agree, (5) Strongly Agree. We coded open-ended survey responses and interview transcripts by theme and sentiment, using a codebook we developed.</p>
+
+      <p>Originally, we intended to code open-ended responses by sentiment alone. But during analysis, we recognized that the open-ended survey item ("What is one change you would make to the program?") was framed in a way that invited criticism. This was skewing responses toward negative sentiment. As a solution, we decided to code by both theme and sentiment instead. This gave us a clearer view of what participants were reacting to, not just whether the reaction was positive or negative, and it made our recommendations more actionable.</p>
+
+      <p>For each data source, we developed and applied a rubric to assign one of four ratings: Exceeds Expectations, Met Expectations, Improvement Needed, or Serious Problems. We then triangulated the source-level ratings at the dimensional level. We deliberately set a high bar for a dimension to be rated Exceeds Expectations. For a data source to rate Exceeds Expectations, its average had to fall between 4.0 and 5.0 with no respondent selecting either disagree option. And for a dimension to rate Exceeds, at least three of its four sources had to earn that rating independently (or both, where a dimension has two), so a single strong source could not raise the dimensional rating on its own.</p>
+
+      <div class="rubric-scale">
+        <div class="rubric-step r1"><div class="r-label">Serious Problems</div><div class="r-band">avg 1.0 to 1.99</div></div>
+        <div class="rubric-step r2"><div class="r-label">Improvement Needed</div><div class="r-band">avg 2.0 to 2.99</div></div>
+        <div class="rubric-step r3"><div class="r-label">Met Expectations</div><div class="r-band">avg 3.0 to 3.99</div></div>
+        <div class="rubric-step r4"><div class="r-label">Exceeds Expectations</div><div class="r-band">avg 4.0 to 5.0</div></div>
+      </div>
+
+      <div class="rule-box">
+        <div class="rule-label">The rule for the top rating</div>
+        <div class="rule-item">
+          <span class="n">1</span>
+          <p>A source reaches Exceeds only if its average is 4.0 to 5.0 with no disagree responses.</p>
+        </div>
+        <div class="rule-item">
+          <span class="n">2</span>
+          <p>A dimension reaches Exceeds only if at least three of its four sources reach Exceeds (or both, where a dimension has two), and no source falls to Improvement Needed or Serious Problems.</p>
+        </div>
+      </div>
+
+      <div class="rule-figure">
+        <p class="rule-figcap">An example: how four source ratings roll up to one dimension rating</p>
+        <svg viewBox="0 0 760 320" role="img" aria-labelledby="ruleDiagramTitle ruleDiagramDesc" xmlns="http://www.w3.org/2000/svg">
+          <title id="ruleDiagramTitle">How source ratings roll up to a dimension rating</title>
+          <desc id="ruleDiagramDesc">Four data sources each receive a rating. Two reach Exceeds and two reach Met. Because fewer than three sources reached Exceeds, the combined dimension rating is held to Met Expectations.</desc>
+
+          <path d="M244,43 C392,43 392,165 536,165" fill="none" stroke="#9CC79E" stroke-width="2"/>
+          <path d="M244,121 C392,121 392,165 536,165" fill="none" stroke="#9CC79E" stroke-width="2"/>
+          <path d="M244,199 C392,199 392,165 536,165" fill="none" stroke="#8FB4D0" stroke-width="2"/>
+          <path d="M244,287 C392,287 392,165 536,165" fill="none" stroke="#8FB4D0" stroke-width="2"/>
+
+          <g font-family="'Source Sans 3', sans-serif">
+            <rect x="4" y="10" width="240" height="66" rx="8" fill="#E8F5E9" stroke="#BBDDBC"/>
+            <text x="20" y="40" font-size="15" font-weight="600" fill="#2E7D32">Source A</text>
+            <text x="20" y="64" font-size="11.5" fill="#5F9061">Reached the Exceeds threshold</text>
+            <rect x="160" y="22" width="72" height="22" rx="11" fill="#2E7D32"/>
+            <text x="196" y="37" font-size="11" font-weight="600" fill="#FFFFFF" text-anchor="middle">Exceeds</text>
+
+            <rect x="4" y="88" width="240" height="66" rx="8" fill="#E8F5E9" stroke="#BBDDBC"/>
+            <text x="20" y="118" font-size="15" font-weight="600" fill="#2E7D32">Source B</text>
+            <text x="20" y="142" font-size="11.5" fill="#5F9061">Reached the Exceeds threshold</text>
+            <rect x="160" y="100" width="72" height="22" rx="11" fill="#2E7D32"/>
+            <text x="196" y="115" font-size="11" font-weight="600" fill="#FFFFFF" text-anchor="middle">Exceeds</text>
+
+            <rect x="4" y="166" width="240" height="66" rx="8" fill="#E4EFF7" stroke="#BBD4E6"/>
+            <text x="20" y="196" font-size="15" font-weight="600" fill="#2C6E9B">Source C</text>
+            <text x="20" y="220" font-size="11.5" fill="#4F7494">Fell below the Exceeds threshold</text>
+            <rect x="174" y="178" width="58" height="22" rx="11" fill="#3576A8"/>
+            <text x="203" y="193" font-size="11" font-weight="600" fill="#FFFFFF" text-anchor="middle">Met</text>
+
+            <rect x="4" y="244" width="240" height="66" rx="8" fill="#E4EFF7" stroke="#BBD4E6"/>
+            <text x="20" y="274" font-size="15" font-weight="600" fill="#2C6E9B">Source D</text>
+            <text x="20" y="298" font-size="11.5" fill="#4F7494">Fell below the Exceeds threshold</text>
+            <rect x="174" y="256" width="58" height="22" rx="11" fill="#3576A8"/>
+            <text x="203" y="271" font-size="11" font-weight="600" fill="#FFFFFF" text-anchor="middle">Met</text>
+
+            <rect x="536" y="105" width="220" height="120" rx="10" fill="#E4EFF7" stroke="#9DBFD8" stroke-width="1.5"/>
+            <text x="646" y="135" text-anchor="middle" font-size="11" font-weight="600" fill="#4F7494" letter-spacing="1.2">DIMENSION</text>
+            <text x="646" y="168" text-anchor="middle" font-size="21" font-family="'Libre Baskerville', Georgia, serif" fill="#2C6E9B">Met Expectations</text>
+            <text x="646" y="194" text-anchor="middle" font-size="11.5" fill="#6B5638">Two of four sources reached Exceeds;</text>
+            <text x="646" y="210" text-anchor="middle" font-size="11.5" fill="#6B5638">the rubric requires at least three.</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <!-- ROLE READINESS -->
+    <div class="case-section" id="role-readiness">
+      <div class="case-section-label">"Role Readiness" Evaluation Results</div>
+
+      <p>The "Role Readiness" dimension showed strong quantitative performance, with manager survey ratings at 4.68 out of 5, and no Strongly Disagree or Somewhat Disagree options selected on any items. NEO participants rated their own role readiness slightly lower than managers, with a composite participant survey mean of 4.55 out of 5. Self-paced learning was the weakest item (mean 3.63) and the only item in either dimension where respondents selected Strongly Disagree or Somewhat Disagree. Both manager and participant interviews rated this dimension Met Expectations, citing gaps in department-specific systems, benefits knowledge, on-the-job training, content relevance, and post-orientation structure.</p>
+
+      <div class="rollup">
+        <div class="tri-sources">
+          <div class="tri-source"><div class="src-name">Manager survey</div><span class="rating-badge exceeds">Exceeds</span></div>
+          <div class="tri-source"><div class="src-name">Participant survey</div><span class="rating-badge met">Met</span></div>
+          <div class="tri-source"><div class="src-name">Manager interview</div><span class="rating-badge met">Met</span></div>
+          <div class="tri-source"><div class="src-name">Participant interview</div><span class="rating-badge met">Met</span></div>
+        </div>
+        <div class="tri-arrow">&darr;</div>
+        <div class="tri-result">
+          <div class="res-eyebrow">Triangulated rating</div>
+          <div class="res-rating">Met Expectations</div>
+          <p class="res-note">Only one of four sources reached Exceeds. The rubric requires at least three, so the dimension is Met.</p>
+          <span class="tri-importance">Importance weighting: Critical</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEELING WELCOMED -->
+    <div class="case-section" id="feeling-welcomed">
+      <div class="case-section-label">"Feeling Welcomed" Evaluation Results</div>
+
+      <p>The "Feeling Welcomed" dimension showed strong quantitative results in all data sources. Participant survey responses were especially high, with a composite mean of 4.81 out of 5 and no respondent selecting Strongly or Somewhat Disagree on any welcome-related items. First-week engagement was high as well: 100% of new hires reported meeting with their manager, 92.6% met with their team, and 77.8% met with an assigned mentor. The participant survey rated Exceeds Expectations.</p>
+
+      <p>Interviews and open-ended survey responses told a different story. Participants described the orientation as impersonal and reported limited connection outside their immediate team. The survey scores were high, but the welcome experience was uneven. The interviews both rated Met Expectations. Because our triangulation rubric required both sources to rate Exceeds Expectations, we rated the dimension Met Expectations overall. A survey-only evaluation would have recorded this dimension as a top result and missed the gap the interviews revealed.</p>
+
+      <div class="rollup">
+        <div class="tri-sources">
+          <div class="tri-source"><div class="src-name">Participant survey</div><span class="rating-badge exceeds">Exceeds</span></div>
+          <div class="tri-source"><div class="src-name">Participant interview</div><span class="rating-badge met">Met</span></div>
+        </div>
+        <div class="tri-arrow">&darr;</div>
+        <div class="tri-result">
+          <div class="res-eyebrow">Triangulated rating</div>
+          <div class="res-rating">Met Expectations</div>
+          <p class="res-note">With two sources, the rubric requires both to reach Exceeds. One fell short, so the dimension is Met.</p>
+          <span class="tri-importance">Importance weighting: Critical</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONCLUSIONS -->
+    <div class="case-section" id="conclusions">
+      <div class="case-section-label">Conclusions</div>
+
+      <p>The NEO program is performing well against its two primary outcomes. New hires report feeling welcome and connected to Tamrack's culture, and managers confirm that new hires demonstrate baseline readiness to begin learning their roles. The program's clearest strength is cultural and relational onboarding. Manager engagement in the first week is universal, team engagement is near universal, and the Day 1 synchronous orientation, values messaging, and team-level introductions are consistently cited as effective.</p>
+
+      <p>The clearest area for improvement is the self-paced learning experience. It came up more than anything else in interviews with both participants and managers. Participants described content as too dense for the first week and insufficiently connected to their actual job tasks.</p>
+
+      <h3 style="margin-top: 36px;">Recommendations in priority order</h3>
+
+      <div class="rec-card">
+        <span class="priority">1</span>
+        <div>
+          <h4>Restructure the self-paced learning experience</h4>
+          <p>Spread content over two to four weeks instead of compressing it into week one. Tailor modules to different roles, and replace some of the passive reading with short exercises based on realistic job tasks.</p>
+        </div>
+      </div>
+      <div class="rec-card">
+        <span class="priority">2</span>
+        <div>
+          <h4>Make mentor meetings more consistent</h4>
+          <p>Not every new hire is getting the same experience, so set a few required check-ins during the first two weeks with simple guidance on what to cover.</p>
+        </div>
+      </div>
+      <div class="rec-card">
+        <span class="priority">3</span>
+        <div>
+          <h4>Help new hires connect outside their own team</h4>
+          <p>The team-level welcome is strong, but new hires described limited connection to the rest of the organization. Adding cross-team introductions or a peer cohort would close that gap.</p>
+        </div>
+      </div>
+
+      <p style="margin-top: 24px;">The evaluation scope was limited to the structured first-week experience, but the data pointed to root causes that cannot be fully resolved within the first week alone. These recommendations address problems identified within the evaluated scope but propose changes that extend into the wider onboarding timeline.</p>
+    </div>
+
+    <div class="case-section" id="limitations">
+      <div class="case-section-label">Limitations</div>
+      <p>This evaluation has several limitations worth weighing alongside its findings. The sample is small: 27 participants and 14 managers responded to the surveys, and the interviews drew on four participants and three managers. The evaluation also covers only the 2025 cohort, and because participants completed onboarding at different points in the year, those who finished in January were drawing on much older memories than those who finished in December.</p>
+      <p>All of the interviews were conducted by the client rather than by our team. Because respondents knew they were speaking with the person who runs the program, they may have softened their feedback. The interview and survey findings were generally consistent with each other, which partially offsets this risk, but both sources may carry some degree of social desirability bias.</p>
+      <p>The HR Director was unavailable throughout the evaluation period, so the Director of Learning and Performance Solutions was the sole upstream stakeholder for program context and organizational priorities. That should be kept in mind when interpreting findings related to the program's design intent.</p>
+      <p>We are confident in the overall dimensional findings, but the sample is too small to support reliable comparisons across departments or quarters. Any patterns along those lines may point to areas worth watching, and should not be treated as definitive.</p>
+    </div>
+
+    <div class="references">
+      <h3>References</h3>
+      <p>Chyung, S. Y. (2019). <em>10-step evaluation for training and performance improvement.</em> Sage.</p>
+    </div>
+
+    <div class="references">
+      <h3>Appendix</h3>
+      <p style="font-size: 16px; color: var(--camel-mid); margin-bottom: 16px;">The full report includes the program logic model, the evaluation rubric, the triangulation summary table, the survey instruments, and the codebook.</p>
+      <a href="tamrack-neo-evaluation-report.pdf" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: var(--white); border: 1px solid var(--red); border-radius: 6px; color: var(--red); font-weight: 500; font-size: 15px; text-decoration: none; transition: background 0.2s, color 0.2s;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Full Report (PDF)
+      </a>
+    </div>
+
+    <div class="next-project">
+      <a href="index.html#portfolio"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg> All projects</a>
+      <a href="nimbus-commerce.html">Next project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    </div>
+  </div>
+</div>
+
 <footer>&copy; 2026 Ana Jackson. Built with care.</footer>
+
+<script>
+const nav = document.getElementById('nav');
+const progressBar = document.getElementById('scrollProgress');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  progressBar.style.width = (window.scrollY / docHeight) * 100 + '%';
+});
+
+const sideLinks = document.querySelectorAll('.side-nav a');
+const caseSections = document.querySelectorAll('.case-section');
+const sideObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      sideLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + id));
+    }
+  });
+}, { rootMargin: '-30% 0px -65% 0px' });
+caseSections.forEach(s => sideObserver.observe(s));
+
+const fadeEls = document.querySelectorAll('.case-section, .dimension-card, .plm, .rubric-scale, .rule-box, .rollup, .rec-card');
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => { if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; } });
+}, { threshold: 0.1 });
+fadeEls.forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(16px)'; el.style.transition = 'opacity 0.6s ease, transform 0.6s ease'; fadeObserver.observe(el); });
+
+const plmStages = document.querySelectorAll('.plm-stage');
+plmStages.forEach(stage => {
+  stage.addEventListener('click', () => {
+    const s = stage.getAttribute('data-stage');
+    plmStages.forEach(t => t.classList.remove('active'));
+    stage.classList.add('active');
+    document.querySelectorAll('.plm-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('plm-' + s).classList.add('active');
+  });
+});
+</script>
 </body>
 </html>
