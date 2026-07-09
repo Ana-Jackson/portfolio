@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OPWL Program Learning Goals | Ana Jackson</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #FAF7F2; --cream-dark: #F0E6D9; --cream-mid: #E8DDD0;
+  --camel-dark: #4A3A22; --camel-mid: #6B5638; --camel-light: #8A7556; --camel-shoe: #C6A882;
+  --red: #E03C31; --red-dark: #B82E25; --red-light: #F5E0DE;
+  --black: #1C1C1C; --white: #FFFFFF;
+  --font-display: 'Libre Baskerville', Georgia, serif;
+  --font-body: 'Source Sans 3', 'Segoe UI', sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: var(--font-body); color: var(--camel-mid); background: var(--cream); font-size: 17px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+nav { position: fixed; top: 0; width: 100%; z-index: 100; background: var(--cream); border-bottom: 1px solid rgba(74,58,34,0.08); transition: box-shadow 0.3s; }
+nav.scrolled { box-shadow: 0 1px 12px rgba(74,58,34,0.06); }
+.scroll-progress { position: absolute; bottom: 0; left: 0; height: 3px; width: 0%; background: var(--red); z-index: 101; }
+.nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 18px 40px; }
+.nav-name { font-family: var(--font-display); font-size: 18px; color: var(--camel-dark); text-decoration: none; }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a { font-size: 14px; font-weight: 500; color: var(--camel-light); text-decoration: none; text-transform: uppercase; letter-spacing: 0.08em; transition: color 0.2s; }
+.nav-links a:hover { color: var(--red); }
+
+/* HERO */
+.page-hero { margin-top: 60px; background: var(--black); padding: 80px 40px 60px; }
+.page-hero-inner { max-width: 900px; margin: 0 auto; }
+.page-hero .back-link { font-size: 14px; font-weight: 500; color: var(--camel-shoe); text-decoration: none; text-transform: uppercase; letter-spacing: 0.06em; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 32px; transition: gap 0.2s; }
+.page-hero .back-link:hover { gap: 10px; color: var(--cream); }
+.page-hero h1 { font-family: var(--font-display); font-size: 36px; font-weight: 400; color: var(--cream); line-height: 1.3; margin-bottom: 16px; }
+.page-hero-sub { font-size: 18px; color: var(--camel-shoe); max-width: 640px; line-height: 1.6; }
+.page-hero-meta { display: flex; gap: 32px; margin-top: 28px; }
+.page-hero-meta .meta-item { font-size: 14px; }
+.page-hero-meta .meta-label { font-size: 11px; font-weight: 500; color: var(--camel-light); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 2px; }
+.page-hero-meta .meta-value { color: var(--cream); font-weight: 500; }
+
+/* CONTENT */
+.content { max-width: 900px; margin: 0 auto; padding: 60px 40px 100px; }
+.content-section { margin-bottom: 64px; }
+.section-label { font-size: 15px; font-weight: 500; color: var(--red); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; }
+.content p { margin-bottom: 16px; }
+
+/* GOAL CARDS */
+.goal-card { background: var(--white); border-radius: 8px; margin-bottom: 16px; border: 1px solid rgba(74,58,34,0.06); overflow: hidden; transition: border-color 0.2s; }
+.goal-card:hover { border-color: rgba(74,58,34,0.15); }
+.goal-card-header { padding: 24px 28px; cursor: pointer; display: grid; grid-template-columns: 48px 1fr auto; gap: 16px; align-items: center; }
+.goal-number { font-family: var(--font-display); font-size: 28px; color: var(--red); font-weight: 400; }
+.goal-header-text h3 { font-size: 16px; font-weight: 600; color: var(--camel-dark); margin-bottom: 2px; }
+.goal-header-text .goal-sample { font-size: 13px; color: var(--camel-light); }
+.goal-toggle { font-size: 24px; color: var(--red); transition: transform 0.3s; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; }
+.goal-card.expanded .goal-toggle { transform: rotate(45deg); }
+.goal-card-body { display: none; padding: 0 28px 28px 92px; }
+.goal-card.expanded .goal-card-body { display: block; }
+.goal-card.expanded { border-color: var(--red); }
+.goal-sub { font-size: 13px; font-weight: 600; color: var(--red); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 20px; margin-bottom: 8px; }
+.goal-sub:first-child { margin-top: 0; }
+.goal-card-body p { font-size: 15px; color: var(--camel-mid); line-height: 1.7; margin-bottom: 12px; }
+
+/* TOOLS GRID */
+.tools-section { margin-top: 64px; }
+.tools-grid { margin-top: 20px; overflow-x: auto; }
+.tools-table { width: 100%; border-collapse: separate; border-spacing: 0; background: var(--white); border-radius: 8px; overflow: hidden; border: 1px solid rgba(74,58,34,0.06); }
+.tools-table thead th { padding: 14px 16px; font-size: 12px; font-weight: 600; color: var(--camel-dark); text-transform: uppercase; letter-spacing: 0.04em; text-align: center; background: var(--cream-dark); border-bottom: 1px solid rgba(74,58,34,0.1); }
+.tools-table thead th:first-child { text-align: left; min-width: 280px; }
+.tools-table tbody td { padding: 14px 16px; font-size: 15px; color: var(--camel-mid); border-bottom: 1px solid rgba(74,58,34,0.04); text-align: center; }
+.tools-table tbody td:first-child { text-align: left; font-weight: 500; color: var(--camel-dark); font-size: 14px; }
+.tools-table tbody tr:last-child td { border-bottom: none; }
+.tools-table tbody tr:hover { background: rgba(250,247,242,0.5); }
+.phase-dot { display: inline-block; width: 20px; height: 20px; background: var(--red); border-radius: 50%; position: relative; cursor: default; }
+.phase-dot-tooltip { display: none; position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); background: var(--black); color: var(--cream); font-size: 11px; padding: 4px 10px; border-radius: 4px; white-space: nowrap; z-index: 10; }
+.phase-dot:hover .phase-dot-tooltip { display: block; }
+
+/* FIGURE */
+.figure-section { margin-top: 64px; }
+.figure-container { background: var(--white); border-radius: 8px; padding: 32px; border: 1px solid rgba(74,58,34,0.06); text-align: center; margin-top: 16px; }
+.figure-container img { max-width: 100%; height: auto; }
+.figure-caption { font-size: 13px; color: var(--camel-light); margin-top: 16px; line-height: 1.5; }
+.figure-placeholder { padding: 60px; color: var(--camel-light); font-style: italic; font-size: 15px; }
+
+/* REFERENCES */
+.references { margin-top: 48px; padding-top: 32px; border-top: 1px solid rgba(74,58,34,0.1); }
+.references h3 { font-family: var(--font-display); font-size: 18px; font-weight: 400; color: var(--camel-dark); margin-bottom: 16px; }
+.references p { font-size: 14px; color: var(--camel-light); line-height: 1.6; margin-bottom: 8px; }
+
+.next-project { margin-top: 48px; padding-top: 32px; border-top: 1px solid rgba(74,58,34,0.1); display: flex; justify-content: space-between; align-items: center; }
+.next-project a { font-size: 14px; font-weight: 500; color: var(--red); text-decoration: none; text-transform: uppercase; letter-spacing: 0.06em; display: inline-flex; align-items: center; gap: 6px; transition: gap 0.2s; }
+.next-project a:hover { gap: 10px; }
+
+footer { background: var(--black); padding: 24px 40px; text-align: center; font-size: 13px; color: var(--camel-light); }
+
+@media (max-width: 768px) {
+  .nav-inner { padding: 14px 24px; } .nav-links { gap: 20px; } .nav-links a { font-size: 12px; }
+  .page-hero { padding: 60px 24px 40px; } .page-hero h1 { font-size: 28px; }
+  .content { padding: 40px 24px 80px; }
+  .goal-card-header { grid-template-columns: 36px 1fr auto; gap: 12px; padding: 20px; }
+  .goal-card-body { padding: 0 20px 20px 56px; }
+  .goal-number { font-size: 22px; }
+  .page-hero-meta { flex-wrap: wrap; gap: 20px; }
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-name">Ana Jackson</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#portfolio">Portfolio</a></li>
+      <li><a href="index.html#experience">Experience</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+  <div class="scroll-progress" id="scrollProgress"></div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <a href="index.html#portfolio" class="back-link">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+      Back to portfolio
+    </a>
+    <h1>OPWL Program Learning Goals</h1>
+    <p class="page-hero-sub">How two work samples demonstrate the five competencies expected of OPWL graduates.</p>
+    <div class="page-hero-meta">
+      <div class="meta-item">
+        <div class="meta-label">Work Samples</div>
+        <div class="meta-value">LMNOP Aviation, Tamrack NEO</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- LEARNING GOALS -->
+  <div class="content-section">
+    <div class="section-label">Learning Goals</div>
+    <p>Click each goal to see how it was demonstrated through the work samples.</p>
+
+    <!-- GOAL 1 -->
+    <div class="goal-card" onclick="this.classList.toggle('expanded')">
+      <div class="goal-card-header">
+        <div class="goal-number">1</div>
+        <div class="goal-header-text">
+          <h3>Apply systematic and/or systemic methods to performance improvement work</h3>
+          <div class="goal-sample">Demonstrated in: LMNOP Aviation Needs Assessment</div>
+        </div>
+        <div class="goal-toggle">+</div>
+      </div>
+      <div class="goal-card-body">
+        <div class="goal-sub">Apply systematic methods</div>
+        <p>A systematic approach in an HPI context uses a structured, step-by-step process to improve performance.</p>
+        <p>Focusing on the Performance Analysis of Need or Opportunity section of the Performance Improvement/HPT Model (Dessinger, Moseley, & Van Tiem, 2012), we first gathered preliminary data to identify and define the performance problem and then conducted a gap analysis to identify needs. Based on these findings, we selected Chevalier's Updated BEM (2003) and Rummler and Brache's Nine Variables Model (as cited in Stefaniak, 2020) to conduct our needs analysis, as those models aligned well with the problem we were examining. Then we created a needs assessment plan, which we followed throughout the analysis. The plan included which data collection methods we would use, as well as the questions we planned to ask. We aligned the questions to the models we selected. After collecting data, we conducted a cause analysis by using the Root Cause Analysis and 5 Whys to determine the causal factors related to the performance problem. Taking this systematic approach ensured our analysis was thorough and organized. It especially helped us focus on what was important during the cause analysis when we were swimming in data.</p>
+        <p>Looking back, I think our survey questions could have been more precise, yielding more useful data. Time constraints were the biggest factor. We were forced to conduct interviews and send the survey out at the same time. In the future, I would like to conduct interviews first (if possible) so I can use that information to inform the survey questions.</p>
+
+        <div class="goal-sub">Apply systemic methods</div>
+        <p>A systemic approach examines interconnected organizational elements, like an ecosystem. If one area is out of balance, it can affect the entire organization. In a needs assessment, these areas include the organization's goals and resources, the work processes and workflows that produce results, and the individual capabilities of performers, along with how a gap in any one of them affects performance across the whole system.</p>
+        <p>We used Chevalier's BEM (2003) and Rummler and Brache's Nine Variables Model (as cited in Stefaniak, 2020) to identify causal factors at the organizational, environmental, and individual levels. Looking at the performance environment as a system, and not just an individual problem, meant that our recommendations had a much higher likelihood of closing or narrowing the performance gap.</p>
+        <p>However, in retrospect, I would have limited the scope given the timeline we were working with. The short timeline only permitted interviews with TSMs, CSMs, and Technicians. We did not interview support staff, including parts department personnel, scheduling coordinators, or IT system administrators, all of whom could potentially influence productivity and invoice accuracy. As a result, there may be some root causes that we didn't discover, and our recommendations focused on factors for TSMs, CSMs, and Technicians. But it's possible this may only partially solve the problem. It would have been better to limit the scope to one metric and interview all relevant stakeholders than to get partial coverage for multiple metrics. Scoping is something I continue to work on and develop skill in.</p>
+      </div>
+    </div>
+
+    <!-- GOAL 2 -->
+    <div class="goal-card" onclick="this.classList.toggle('expanded')">
+      <div class="goal-card-header">
+        <div class="goal-number">2</div>
+        <div class="goal-header-text">
+          <h3>Apply established professional ethics and standards to performance improvement work</h3>
+          <div class="goal-sample">Demonstrated in: Tamrack New Employee Orientation Program Evaluation</div>
+        </div>
+        <div class="goal-toggle">+</div>
+      </div>
+      <div class="goal-card-body">
+        <div class="goal-sub">Apply professional ethics</div>
+        <p>All team members completed CITI Program training in Social & Behavioral Research, and the American Evaluation Association (AEA)'s guiding principles for evaluators. We only provided aggregated data and selected quotes in our final report. We educated participants about their rights to privacy and autonomy in deciding whether to participate in surveys and interviews using informed consent materials. We provided the evaluation sponsor with email templates for recruitment to communicate the purpose, benefits, and risks of participating in the surveys and interviews to ensure participants could make an informed choice.</p>
+
+        <div class="goal-sub">Apply professional standards</div>
+        <p>This evaluation aligned with JCSEE Program Evaluation Standards by staying focused on stakeholder priorities (utility), keeping the scope realistic with available data (feasibility), being transparent about limitations (propriety), and using multiple data sources and constructs to support the findings (accuracy).</p>
+        <p>It also aligns with ISPI standards by focusing on meaningful outcomes, such as employee readiness and engagement, rather than just completion metrics. The recommendations go beyond surface-level training fixes and address broader system issues, such as cognitive overload and a lack of interaction. Overall, the evaluation produced practical, evidence-based insights that the organization can realistically use to improve onboarding.</p>
+      </div>
+    </div>
+
+    <!-- GOAL 3 -->
+    <div class="goal-card" onclick="this.classList.toggle('expanded')">
+      <div class="goal-card-header">
+        <div class="goal-number">3</div>
+        <div class="goal-header-text">
+          <h3>Align performance improvement solutions with strategic organizational goals and make recommendations to produce results valued by organizations</h3>
+          <div class="goal-sample">Demonstrated in: LMNOP Aviation Needs Assessment</div>
+        </div>
+        <div class="goal-toggle">+</div>
+      </div>
+      <div class="goal-card-body">
+        <div class="goal-sub">Align with strategic organizational goals</div>
+        <p>LMNOP Aviation's service division has several strategic goals: enhancing customer satisfaction, streamlining operations, building a capable workforce, improving profitability, and implementing systems that help teams consistently exceed customer expectations. My team aligned our needs assessment to these goals by conducting the analysis using two established frameworks as guides: Chevalier's BEM (2003) and Rummler and Brache's Nine-Variable Model (as cited in Stefaniak, 2020). We also prioritized causal factors based on the strength of evidence, how many sites were impacted, and whether the factor was in the organization's control. From there, we selected solutions that matched the performance issues and fell into one or more of these categories, additionally taking into consideration criteria outlined by our client, such as cost and ease of implementation. This ensured our recommendations were prioritized for their potential to deliver the greatest benefit across the network relative to cost and implementation complexity. In addition, we selected exemplary and underperforming locations based on data analysis showing clear performance differentiation, and when we discovered that competitor benchmarking was unavailable, we used the organization's own goals as the benchmark instead. These adjustments helped us maintain rigor without compromising the fundamental needs assessment approach.</p>
+
+        <div class="goal-sub">Make recommendations that produce valued results</div>
+        <p>In this project, the desired results we identified were associated with site productivity and invoicing accuracy, both of which are leading indicators of Net Operating Profit. Progress in these areas produces outcomes the organization genuinely values. During our cause analysis, we prioritized interventions by impact on the performance problem. By conducting a systematic and systemic analysis and taking a data-informed approach, we ensured that our recommendations addressed the actual causes of the performance problem, and in a much more holistic way, leading to greater impact and higher likelihood of closing the performance gap. At the same time, we stayed honest about their limits: because our findings were based on patterns identified across a sample of sites, some recommendations may require adjustments during implementation to address site-specific conditions not surfaced in our analysis. In addition, our recommendation to adjust leadership compensation and review cost-of-living is based on employee perceptions rather than verified pay data which was not available to us. That will require HR to conduct an independent compensation study to determine the actual gap.</p>
+      </div>
+    </div>
+
+    <!-- GOAL 4 -->
+    <div class="goal-card" onclick="this.classList.toggle('expanded')">
+      <div class="goal-card-header">
+        <div class="goal-number">4</div>
+        <div class="goal-header-text">
+          <h3>Collaborate effectively with others, in person and virtually, and communicate effectively in written, oral, and visual forms</h3>
+          <div class="goal-sample">Demonstrated in: Tamrack New Employee Orientation Program Evaluation</div>
+        </div>
+        <div class="goal-toggle">+</div>
+      </div>
+      <div class="goal-card-body">
+        <div class="goal-sub">Collaborate effectively</div>
+        <p>In order to successfully complete the evaluation, my team worked efficiently and effectively together to assign roles and assignments, as well as discuss ideas and issues. In addition, the evaluation required my team to effectively collaborate with the client to gather the needed information and collect data. My team developed a team charter to define the division of assignment responsibilities, outline project coordination, and establish team accountability. This structure was effective. Because responsibilities and accountability were defined up front, we delivered each assignment on time, and when one team member had limited availability, others were able to step in without confusion over ownership.</p>
+
+        <div class="goal-sub">Communicate effectively</div>
+        <p>The evaluation required my team to communicate, despite the different remote locations. My team communicated in written form via email, text, and Google Docs to prepare for team meetings and meetings with the client, complete assignments, and discuss any outstanding issues. My team also communicated verbally during our team meetings every week. My team members respected one another and were in constant communication throughout the project. The effectiveness of this communication was evident in our output. For example, issues were surfaced and resolved between meetings rather than stalling progress, and we consistently arrived at both team and client meetings prepared, with deliverables completed on schedule.</p>
+      </div>
+    </div>
+
+    <!-- GOAL 5 -->
+    <div class="goal-card" onclick="this.classList.toggle('expanded')">
+      <div class="goal-card-header">
+        <div class="goal-number">5</div>
+        <div class="goal-header-text">
+          <h3>Apply theory and evidence to performance improvement work</h3>
+          <div class="goal-sample">Demonstrated in: LMNOP Aviation Needs Assessment</div>
+        </div>
+        <div class="goal-toggle">+</div>
+      </div>
+      <div class="goal-card-body">
+        <div class="goal-sub">Apply theory to practice</div>
+        <p>Evidence-based practice means gathering evidence through extant, quantitative, and qualitative data, and research. Needs assessors then use this evidence to support or validate their findings and recommendations, ensuring that decisions are grounded in fact rather than assumption. My team applied this approach throughout the needs assessment. Chevalier's BEM (2003) and Rummler and Brache's Nine-Variable Model (as cited in Stefaniak, 2020) are both evidence-based approaches, and we used them as the backbone of our analysis: we developed a structured codebook from the two models that gave us a consistent, theory-driven way to classify the qualitative data from our interviews and organization-wide surveys, which in turn revealed systemic patterns rather than isolated issues. We also crafted our survey using evidence-based methods, such as using positive language for questions. In the future, I will always rely on evidence-based practices to ensure the methods I use are likely to be effective and, in that regard, provide value to my clients.</p>
+
+        <div class="goal-sub">Apply evidence/data</div>
+        <p>To ground those frameworks in evidence, my team used a multi-faceted approach to ensure comprehensive coverage of potential performance barriers. We conducted interviews with TSMs and CSMs at exemplary and non-exemplary sites, distributed surveys to all GMs, MMs, TSMs, CSMs, and technicians across the organization, and collected extant data for all locations. From there, we compared exemplary and non-exemplary sites to identify the factors associated with high and low performance. We then triangulated those differences across three sources: our interviews and surveys, coded by the BEM and Nine-Variable Model frameworks, and our extant operational data. Drawing on multiple sources let us compensate for the limitations of any single method. We were also transparent about where our evidence fell short. Because we collected all of our data remotely, we had no on-site view of work processes. That meant we could not directly observe technician workflows, coordination between TSMs and CSMs, invoice review procedures, or real-time problem-solving. Interviews, surveys, and extant data still gave us valuable insights. Direct observation, though, would have enabled fuller triangulation of findings and a deeper understanding of the tacit work practices that participants may not explicitly articulate.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOOLS/PHASES -->
+  <div class="content-section tools-section">
+    <div class="section-label">OPWL Tools and HPT Phases</div>
+    <p>The table below shows which established tools were applied in each phase of the Performance Improvement/HPT Model across both work samples.</p>
+
+    <div class="tools-grid">
+      <table class="tools-table">
+        <thead>
+          <tr>
+            <th>OPWL Tool</th>
+            <th>Performance Analysis of Need or Opportunity</th>
+            <th>Intervention Selection, Design & Dev.</th>
+            <th>Intervention Implementation & Maintenance</th>
+            <th>Evaluation</th>
+            <th>Change Management</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Rummler & Brache's Performance Matrix</td>
+            <td><span class="phase-dot"><span class="phase-dot-tooltip">Performance Analysis</span></span></td>
+            <td><span class="phase-dot"><span class="phase-dot-tooltip">Intervention Selection</span></span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>AEA's Guiding Principles for Evaluators</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><span class="phase-dot"><span class="phase-dot-tooltip">Evaluation</span></span></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>ISPI's Standards for Performance Improvement</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><span class="phase-dot"><span class="phase-dot-tooltip">Evaluation</span></span></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Chevalier's Updated BEM</td>
+            <td><span class="phase-dot"><span class="phase-dot-tooltip">Performance Analysis</span></span></td>
+            <td><span class="phase-dot"><span class="phase-dot-tooltip">Intervention Selection</span></span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Root Cause Analysis / 5 Whys</td>
+            <td><span class="phase-dot"><span class="phase-dot-tooltip">Performance Analysis</span></span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>JCSEE Program Evaluation Standards</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><span class="phase-dot"><span class="phase-dot-tooltip">Evaluation</span></span></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- FIGURE -->
+  <div class="content-section figure-section">
+    <div class="section-label">Figure 1</div>
+    <p><em>Performance Improvement/HPT Model.</em></p>
+    <div class="figure-container">
+      <img src="hpt-model.png" alt="Performance Improvement/HPT Model" style="max-width: 100%;">
+      <p class="figure-caption">Source: Van Tiem, D. M., Moseley, J. L., & Dessinger, J. C. (2012). <em>Fundamentals of performance improvement: Optimizing results through people, process, and organizations</em> (3rd ed.). Pfeiffer.</p>
+    </div>
+  </div>
+
+  <!-- REFERENCES -->
+  <div class="references">
+    <h3>References</h3>
+    <p>Chevalier, R. (2003). Updating the Behavior Engineering Model. <em>Performance Improvement, 42</em>(5), 8-14.</p>
+    <p>Van Tiem, D. M., Moseley, J. L., & Dessinger, J. C. (2012). <em>Fundamentals of performance improvement: Optimizing results through people, process, and organizations</em> (3rd ed.). Pfeiffer.</p>
+    <p>Stefaniak, J. (2020). <em>Needs Assessment for Learning and Performance.</em> Routledge.</p>
+  </div>
+
+  <div class="next-project">
+    <a href="index.html#portfolio">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+      Back to portfolio
+    </a>
+  </div>
+</div>
+
+<footer>&copy; 2026 Ana Jackson. Built with care.</footer>
+
+<script>
+const nav = document.getElementById('nav');
+const progressBar = document.getElementById('scrollProgress');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  progressBar.style.width = (window.scrollY / docHeight) * 100 + '%';
+});
+const fadeEls = document.querySelectorAll('.goal-card, .tools-section, .figure-section, .content-section');
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => { if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; } });
+}, { threshold: 0.1 });
+fadeEls.forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(16px)'; el.style.transition = 'opacity 0.6s ease, transform 0.6s ease'; fadeObserver.observe(el); });
+</script>
+</body>
+</html>
